@@ -21,16 +21,20 @@ public class Cook : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
         dragging = true;
-        point = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 rayPoint = ray.GetPoint(distance);
+        point = transform.position - rayPoint;
     }
 
     private void OnMouseDrag()
     {
         if (dragging)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = mousePosition + point;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 rayPoint = ray.GetPoint(distance);
+            transform.position = rayPoint + point;
             Debug.Log("why");
 
         }
