@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
         
         Debug.Log(playerCamera.name);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
