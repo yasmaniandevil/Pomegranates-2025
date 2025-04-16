@@ -67,4 +67,12 @@ public class Player : MonoBehaviour
         
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
     }
+
+    private void OnMouseDown()
+    {
+        if (gameObject.CompareTag("Phone"))
+        {
+            Debug.Log("pickup ohne");
+        }
+    }
 }
