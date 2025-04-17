@@ -8,12 +8,12 @@ public class Cook : MonoBehaviour
     public bool dragging = false;
     private float distance;
 
-    Rigidbody food;
+    Rigidbody foodBody;
 
     // Start is called before the first frame update
     void Start()
     {
-        food = GetComponent<Rigidbody>();
+        foodBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class Cook : MonoBehaviour
     {
         Debug.Log("mouse up");
         dragging = false;
-        food.isKinematic = false;
+        foodBody.isKinematic = false;
         
     }
 }
