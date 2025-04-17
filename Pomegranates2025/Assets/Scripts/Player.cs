@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,6 +15,11 @@ public class Player : MonoBehaviour
     //track camera vertical- up and down movement
     private float yRotation = 0;
     private float xRotation = 0;
+
+    public GameObject interactPopUp;
+    //public Transform phoneSocket;
+    public GameObject phonePrefab;
+    public bool canPickUp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +49,9 @@ public class Player : MonoBehaviour
 
         CameraLook();
 
+      
+        
+
     }
 
     void CameraLook()
@@ -68,11 +77,29 @@ public class Player : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
     }
 
-    private void OnMouseDown()
+    //picking up the phone
+    private void OnTriggerStay(Collider other)
     {
-        if (gameObject.CompareTag("Phone"))
+        if (other.gameObject.CompareTag("Phone"))
         {
-            Debug.Log("pickup ohne");
+            interactPopUp.SetActive(true );
+            canPickUp = true;
+            
+            if (canPickUp && Input.GetKey(KeyCode.E))
+            {
+                Debug.Log("can pick ip is true and pressed E");
+                phonePrefab.SetActive(true);
+                canPickUp = false;
+                //Debug.Log("Can pick up: " + canPickUp);
+                other.gameObject.SetActive(false);
+                
+            }
+            
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
     }
 }
