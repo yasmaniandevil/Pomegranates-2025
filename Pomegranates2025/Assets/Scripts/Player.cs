@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -49,8 +50,36 @@ public class Player : MonoBehaviour
 
         CameraLook();
 
-      
-        
+
+        //after you pick it up just to turn it on and off from your hand
+        //if you already picked it up
+        if (phonePrefab.gameObject.activeInHierarchy)
+        {
+            //and you press E
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //you can turn it off and put it away
+                phonePrefab.SetActive(false);
+                canPickUp = !canPickUp;
+            }
+        }
+
+        if (!canPickUp)
+        {
+            phonePrefab.SetActive(true);
+            Debug.Log("take out of pocker");
+        }
+
+        /*if (canPickUp)
+        {
+            phonePrefab.SetActive(true);
+            canPickUp=false;
+        }*/
+
+        /*if (Input.GetKeyDown(KeyCode.E))
+        {
+            canPickUp = !canPickUp;
+        }*/
 
     }
 
@@ -82,8 +111,10 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Phone"))
         {
+            Debug.Log("in phone area");
             interactPopUp.SetActive(true );
             canPickUp = true;
+            Debug.Log("can pick up bool: " + canPickUp);
             
             if (canPickUp && Input.GetKey(KeyCode.E))
             {
@@ -97,6 +128,8 @@ public class Player : MonoBehaviour
             
         }
     }
+
+    
 
     private void OnTriggerExit(Collider other)
     {
