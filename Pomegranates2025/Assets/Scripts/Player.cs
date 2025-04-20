@@ -20,7 +20,9 @@ public class Player : MonoBehaviour
     public GameObject interactPopUp;
     //public Transform phoneSocket;
     public GameObject phonePrefab;
-    public bool canPickUp = false;
+    bool pickedUp;
+    bool phoneInPocket = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,36 +52,15 @@ public class Player : MonoBehaviour
 
         CameraLook();
 
+        PhoneInPocket();
 
-        //after you pick it up just to turn it on and off from your hand
-        //if you already picked it up
-        if (phonePrefab.gameObject.activeInHierarchy)
-        {
-            //and you press E
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                //you can turn it off and put it away
-                phonePrefab.SetActive(false);
-                canPickUp = !canPickUp;
-            }
-        }
+        
 
-        if (!canPickUp)
-        {
-            phonePrefab.SetActive(true);
-            Debug.Log("take out of pocker");
-        }
+        
 
-        /*if (canPickUp)
-        {
-            phonePrefab.SetActive(true);
-            canPickUp=false;
-        }*/
+        
 
-        /*if (Input.GetKeyDown(KeyCode.E))
-        {
-            canPickUp = !canPickUp;
-        }*/
+       
 
     }
 
@@ -109,30 +90,51 @@ public class Player : MonoBehaviour
     //picking up the phone
     private void OnTriggerStay(Collider other)
     {
+        //enter trigger E to interact pop up UI
         if (other.gameObject.CompareTag("Phone"))
         {
-            Debug.Log("in phone area");
             interactPopUp.SetActive(true );
-            canPickUp = true;
-            Debug.Log("can pick up bool: " + canPickUp);
             
-            if (canPickUp && Input.GetKey(KeyCode.E))
+            //if we press E we grab the phone and destroy the pick up item
+            //set picked up to true
+            if (Input.GetKey(KeyCode.E))
             {
                 Debug.Log("can pick ip is true and pressed E");
                 phonePrefab.SetActive(true);
-                canPickUp = false;
                 //Debug.Log("Can pick up: " + canPickUp);
                 other.gameObject.SetActive(false);
+                pickedUp = true;
                 
             }
             
         }
     }
 
-    
-
-    private void OnTriggerExit(Collider other)
+    void PhoneInPocket()
     {
+        
+        //if we already picked it up
+        if (pickedUp)
+        {
+            //we can press E
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //toggles it to true or false each time you picked it up
+                phoneInPocket = !phoneInPocket;
+                Debug.Log("is Phone in pocket: " + phoneInPocket);
 
+                //if ur phone is not in ur pocket than u r using it
+                if (!phoneInPocket)
+                {
+                    phonePrefab.SetActive(true);
+                }
+                //if true that your phone is in ur pocket it is no longer visible
+                else
+                {
+                    phonePrefab.SetActive(false);
+                }
+
+            }
+        }
     }
 }
