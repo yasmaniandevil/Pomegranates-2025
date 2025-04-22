@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -17,11 +18,13 @@ public class Player : MonoBehaviour
     private float yRotation = 0;
     private float xRotation = 0;
 
+    public GameObject reticle;
     public GameObject interactPopUp;
     //public Transform phoneSocket;
     public GameObject phonePrefab;
     bool pickedUp;
     bool phoneInPocket = true;
+
 
 
     // Start is called before the first frame update
@@ -35,8 +38,8 @@ public class Player : MonoBehaviour
         
         Debug.Log(playerCamera.name);
 
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -55,13 +58,25 @@ public class Player : MonoBehaviour
 
         PhoneInPocket();
 
-        
-
-        
-
-        
-
+        //reticle is always red
+        reticle.GetComponent<Image>().color = Color.red;
        
+
+        //shoot ray for reticle
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        //Shoots ray at 5 meters
+        if (Physics.Raycast(ray, out hit, 5))
+        {
+            //if object has interactable tag
+            if(hit.collider.CompareTag("Interactable"))
+            {
+                //turn reticle black
+                reticle.GetComponent<Image>().color = Color.black;
+            }
+       
+        }
 
     }
 
