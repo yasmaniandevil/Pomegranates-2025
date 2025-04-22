@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
         move = (transform.right * horizontalX) + (transform.forward * forwardZ);
 
         cc.Move(move * moveSpeed * Time.deltaTime);
+        Debug.Log("walking");
 
         CameraLook();
 
@@ -85,6 +86,8 @@ public class Player : MonoBehaviour
 
         
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+
+        Debug.Log("called cam look");
     }
 
     //picking up the phone
