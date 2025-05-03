@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using VideoKit;
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +28,8 @@ public class Player : MonoBehaviour
     bool pickedUp;
     bool phoneInPocket = true;
 
+    public RenderTexture phoneRenderTexture;
+    int frameCount = 0;
 
 
     // Start is called before the first frame update
@@ -32,6 +37,7 @@ public class Player : MonoBehaviour
     {
         
         cc = GetComponent<CharacterController>();
+
 
         //playerCamera = GetComponentInChildren<Transform>();
         playerCamera = GameObject.FindWithTag("MainCamera");
@@ -52,7 +58,7 @@ public class Player : MonoBehaviour
         move = (transform.right * horizontalX) + (transform.forward * forwardZ);
 
         cc.Move(move * moveSpeed * Time.deltaTime);
-        Debug.Log("walking");
+        
 
         CameraLook();
 
@@ -76,6 +82,11 @@ public class Player : MonoBehaviour
                 reticle.GetComponent<Image>().color = Color.black;
             }
        
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            CaptureFrame();
         }
 
     }
@@ -102,22 +113,22 @@ public class Player : MonoBehaviour
         
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        Debug.Log("called cam look");
+        
     }
 
     //picking up the phone
     private void OnTriggerStay(Collider other)
     {
         //enter trigger E to interact pop up UI
-        if (other.gameObject.CompareTag("Phone"))
+        if (other.gameObject.CompareTag("Interactable"))
         {
-            interactPopUp.SetActive(true );
+            interactPopUp.SetActive(true);
             
             //if we press E we grab the phone and destroy the pick up item
             //set picked up to true
             if (Input.GetKey(KeyCode.E))
             {
-                Debug.Log("can pick ip is true and pressed E");
+                
                 phonePrefab.SetActive(true);
                 //Debug.Log("Can pick up: " + canPickUp);
                 other.gameObject.SetActive(false);
@@ -139,7 +150,7 @@ public class Player : MonoBehaviour
             {
                 //toggles it to true or false each time you picked it up
                 phoneInPocket = !phoneInPocket;
-                Debug.Log("is Phone in pocket: " + phoneInPocket);
+                
 
                 //if ur phone is not in ur pocket than u r using it
                 if (!phoneInPocket)
@@ -154,5 +165,30 @@ public class Player : MonoBehaviour
 
             }
         }
+    }
+
+    void CaptureFrame()
+    {
+        string path = Application.dataPath + "/SavedFrames/";
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        RenderTexture currentRT = RenderTexture.active;
+        RenderTexture.active = phoneRenderTexture;
+
+        Texture2D image = new Texture2D(phoneRenderTexture.width, phoneRenderTexture.height, TextureFormat.RGB24, false);
+        image.ReadPixels(new Rect(0, 0, phoneRenderTexture.width, phoneRenderTexture.height), 0, 0); 
+        image.Apply();
+
+        byte[] bytes = image.EncodeToPNG();
+        string filePath = path + $"/frame_{frameCount:D04}.png";
+        File.WriteAllBytes(filePath, bytes );
+        Debug.Log("save");
+        frameCount++;
+
+        RenderTexture.active = currentRT;
     }
 }

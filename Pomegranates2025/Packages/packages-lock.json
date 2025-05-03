@@ -1,5 +1,23 @@
 {
   "dependencies": {
+    "ai.fxn.fxn3d": {
+      "version": "0.0.30",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "url": "https://registry.npmjs.com"
+    },
+    "ai.videokit.videokit": {
+      "version": "0.0.22",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "ai.fxn.fxn3d": "0.0.30"
+      },
+      "url": "https://registry.npmjs.com"
+    },
     "com.unity.burst": {
       "version": "1.8.18",
       "depth": 1,
@@ -52,6 +70,13 @@
     "com.unity.mathematics": {
       "version": "1.2.6",
       "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
