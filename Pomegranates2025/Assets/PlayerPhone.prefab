@@ -152,9 +152,10 @@ GameObject:
   - component: {fileID: 6830411193031095726}
   - component: {fileID: 8749764280202404341}
   - component: {fileID: 2336443148445970956}
+  - component: {fileID: 1455443392673494239}
   m_Layer: 0
   m_Name: PlayerPhone
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,8 +288,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
+  reticle: {fileID: 0}
   interactPopUp: {fileID: 0}
   phonePrefab: {fileID: 6730874108820640235}
+  phoneRenderTexture: {fileID: 8400000, guid: 5d16941b1a24c254b96ec102e1288fa9, type: 2}
+--- !u!95 &1455443392673494239
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3954728946222120991}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f78e424c0beda9347baed16b7557d3a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7553819769499311338
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +411,7 @@ PrefabInstance:
     - target: {fileID: 3750149407191615095, guid: 2219c243e6f70c1488d59d46ea1ddb2d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

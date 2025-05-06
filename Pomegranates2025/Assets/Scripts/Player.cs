@@ -28,8 +28,7 @@ public class Player : MonoBehaviour
     bool pickedUp;
     bool phoneInPocket = true;
 
-    public RenderTexture phoneRenderTexture;
-    int frameCount = 0;
+    
 
 
     // Start is called before the first frame update
@@ -84,10 +83,7 @@ public class Player : MonoBehaviour
        
         }
 
-        if(Input.GetMouseButtonDown(1))
-        {
-            CaptureFrame();
-        }
+        
 
     }
 
@@ -167,28 +163,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void CaptureFrame()
-    {
-        string path = Application.dataPath + "/SavedFrames/";
-
-        if (!Directory.Exists(path))
-        {
-            Directory.CreateDirectory(path);
-        }
-
-        RenderTexture currentRT = RenderTexture.active;
-        RenderTexture.active = phoneRenderTexture;
-
-        Texture2D image = new Texture2D(phoneRenderTexture.width, phoneRenderTexture.height, TextureFormat.RGB24, false);
-        image.ReadPixels(new Rect(0, 0, phoneRenderTexture.width, phoneRenderTexture.height), 0, 0); 
-        image.Apply();
-
-        byte[] bytes = image.EncodeToPNG();
-        string filePath = path + $"/frame_{frameCount:D04}.png";
-        File.WriteAllBytes(filePath, bytes );
-        Debug.Log("save");
-        frameCount++;
-
-        RenderTexture.active = currentRT;
-    }
+ 
+        
 }
