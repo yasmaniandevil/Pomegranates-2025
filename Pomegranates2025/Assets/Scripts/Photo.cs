@@ -14,7 +14,7 @@ public class Photo : MonoBehaviour
     int frameCount = 0;
 
     public RawImage displayImage;
-    private List<Texture2D> photos = new List<Texture2D>();
+    public List<Texture2D> photos = new List<Texture2D>();
     private int currentPhotoIndex = 0;
 
     // Start is called before the first frame update
@@ -26,10 +26,24 @@ public class Photo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        //if (photos.Count == 0) return;
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("hit mouse");
             CaptureFrame();
+        }
+
+        if(Input.GetKeyDown (KeyCode.E))
+        {
+            Debug.Log("right arrow");
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.Count;
+            ShowPhoto(currentPhotoIndex);
+        }
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            currentPhotoIndex = (currentPhotoIndex - 1) % photos.Count % photos.Count;
+            ShowPhoto(currentPhotoIndex);
         }
     }
 
@@ -37,7 +51,7 @@ public class Photo : MonoBehaviour
     {
         //string path = Application.dataPath + "/StreamingAssets/SavedFrames/";
         //tell unity where to go
-        string path = Path.Combine(Application.streamingAssetsPath, "/SavedFrames");
+        string path = Path.Combine(Application.streamingAssetsPath, "SavedFrames");
 
         //if it doesnt exist then create it
         if (!Directory.Exists(path))
@@ -75,11 +89,13 @@ public class Photo : MonoBehaviour
         File.WriteAllBytes(filePath, bytes);
 
         //add to gallery
+        photos.Add(image);
+        currentPhotoIndex = photos.Count - 1;
+        ShowPhoto(currentPhotoIndex);
 
 
-
-        string[] files = Directory.GetFiles(filePath, "*.png");
-        Debug.Log("save");
+        //string[] files = Directory.GetFiles(filePath, "*.png");
+        //Debug.Log("save");
         //increase so next screen shot gets new name
         frameCount++;
 
@@ -89,5 +105,24 @@ public class Photo : MonoBehaviour
       
     }
 
+    void LoadPhotos()
+    {
+        string folderPath = Path.Combine(Application.streamingAssetsPath, "SavedPhotos");
+        if (!Directory.Exists(folderPath)) return;
+
+        string[] files = Directory.GetFiles(folderPath, "*.png");
+        foreach (string file in files)
+        {
+            byte[] bytes = File.ReadAllBytes(file);
+            Texture2D tex = new Texture2D(2, 2);
+            tex.LoadImage(bytes);
+            photos.Add(tex);
+        }
+    }
     
+    void ShowPhoto(int index)
+    {
+        if(index < 0 || index >= photos.Count) return;
+        displayImage.texture = photos[index];
+    }
 }
