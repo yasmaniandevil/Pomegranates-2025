@@ -28,6 +28,18 @@ public class Player : MonoBehaviour
     bool pickedUp;
     bool phoneInPocket = true;
 
+   
+    public Transform groundCheck;
+    private float groundDistance = .2f;
+    public bool isGrounded;
+    public LayerMask groundLayer;
+    public LayerMask rightFootLayer;
+    public LayerMask leftFootLayer;
+    public bool isLeftFoot;
+    public bool isRightFoot;
+    public Transform leftFoot;
+    public Transform rightFoot;
+
     
 
 
@@ -83,8 +95,23 @@ public class Player : MonoBehaviour
        
         }
 
-        
+        //FootCheck();
 
+    }
+
+    private void FixedUpdate()
+    {
+        isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, groundDistance, groundLayer);
+        Debug.DrawRay(groundCheck.position, Vector3.down * groundDistance, Color.red);
+        //Debug.Log(isGrounded);
+
+        isLeftFoot = Physics.Raycast(leftFoot.position, Vector3.down, groundDistance, leftFootLayer);
+        Debug.DrawRay(leftFoot.position, Vector3.down * groundDistance, Color.red);
+        Debug.Log(isLeftFoot);
+
+        isRightFoot = Physics.Raycast(rightFoot.position, Vector3.down, groundDistance, rightFootLayer);
+        Debug.DrawRay(rightFoot.position, Vector3.down * groundDistance, Color.red);
+        Debug.Log(isRightFoot);
     }
 
     void CameraLook()
@@ -163,6 +190,11 @@ public class Player : MonoBehaviour
         }
     }
 
- 
+    void FootCheck()
+    {
         
+
+
+    }
+
 }
