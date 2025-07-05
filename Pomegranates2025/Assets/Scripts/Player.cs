@@ -35,8 +35,8 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask rightFootLayer;
     public LayerMask leftFootLayer;
-    public bool isLeftFoot;
-    public bool isRightFoot;
+    public bool isOnLeftFootPrint;
+    public bool isOnRightFootPrint;
     public Transform leftFoot;
     public Transform rightFoot;
 
@@ -105,13 +105,13 @@ public class Player : MonoBehaviour
         Debug.DrawRay(groundCheck.position, Vector3.down * groundDistance, Color.red);
         //Debug.Log(isGrounded);
 
-        isLeftFoot = Physics.Raycast(leftFoot.position, Vector3.down, groundDistance, leftFootLayer);
+        isOnLeftFootPrint = Physics.Raycast(leftFoot.position, Vector3.down, groundDistance, leftFootLayer);
         Debug.DrawRay(leftFoot.position, Vector3.down * groundDistance, Color.red);
-        Debug.Log(isLeftFoot);
+        Debug.Log(isOnLeftFootPrint);
 
-        isRightFoot = Physics.Raycast(rightFoot.position, Vector3.down, groundDistance, rightFootLayer);
+        isOnRightFootPrint = Physics.Raycast(rightFoot.position, Vector3.down, groundDistance, rightFootLayer);
         Debug.DrawRay(rightFoot.position, Vector3.down * groundDistance, Color.red);
-        Debug.Log(isRightFoot);
+        Debug.Log(isOnRightFootPrint);
     }
 
     void CameraLook()
