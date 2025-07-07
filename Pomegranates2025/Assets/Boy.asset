@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e1b1b7c7bffab489765a26311a0a46, type: 3}
+  m_Name: Boy
+  m_EditorClassIdentifier: 
+  startingPos: {fileID: 3658464328032882623, guid: 2f6c5be3ac00bc9428f8ccbeaf527de3,
+    type: 3}
+  leftFoot: {fileID: 8610149487336016952, guid: 7e139828d966cc64aae6c55a94b01cad,
+    type: 3}
+  rightFoot: {fileID: 4075691252050976698, guid: ec116923c341aaf409b9dfbdbedef154,
+    type: 3}
+  directionChanges:
+  - 90
+  spacing: 2

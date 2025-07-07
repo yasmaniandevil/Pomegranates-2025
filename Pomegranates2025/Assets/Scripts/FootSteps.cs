@@ -6,20 +6,30 @@ using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class footSteps : MonoBehaviour
 {
-    public GameObject leftFoot;
-    public GameObject rightFoot;
+    float distance;
 
-    public float spacing = 1f;
+    public float spacing = 10f;
 
     public bool isRightFootNext;
 
+    public Transform lastFootPrint;
+
     public Player player;
+
+    public GameObject leftFoot;
+    public GameObject rightFoot;
+
+    public List<GameObject> feets = new List<GameObject>();
+
+    Vector3 currentDir;
+    public Paths pathData;
+    int currentDirectionIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         
-        //player = GetComponent<Player>();
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        currentDir = pathData.startingPos.forward;
     }
 
     // Update is called once per frame
@@ -27,56 +37,57 @@ public class footSteps : MonoBehaviour
     {
         PlayFeet();
 
-
+        //make sure the player isnt too far away
+        distance = Vector3.Distance(lastFootPrint.position, player.transform.position);
+        Debug.Log("distance: " + distance);
     }
 
     void PlayFeet()
     {
-        Vector3 distance = transform.position + transform.forward * spacing;
-
-        //if player is on left foot layer
-        if (player.isOnLeftFootPrint)
+        if (feets.Count < 10)
         {
-            //then right foot next is true
-            isRightFootNext = true;
-            //checks if true
-            if (isRightFootNext)
+            //further or closer to the footsteps for them to spawn?
+            if (distance <= pathData.spacing)
             {
-                //adds to the distance
-                distance = distance * 2f;
-                //instantiate right foot image
-                Instantiate(rightFoot, distance, Quaternion.identity);
-            }
 
-        }//if player is on right footprint layer
-        else if (player.isOnRightFootPrint)
-        {
-            //then instantiate left foot print
-            isRightFootNext= false;
-            if ((!isRightFootNext))
-            {
-                Instantiate(leftFoot, distance, Quaternion.identity);
-            }
-        }
-            /*for (var i = 0; i < 10; i++)
-            {
-                //first instniatye the left one
-                //if left one down instanite right one
-                //go back and forth
+                GameObject newFoot;
+                Vector3 spawnPos = lastFootPrint.position + currentDir * pathData.spacing;
 
-                //Instantiate(leftFoot, distance, Quaternion.identity);
+                if (isRightFootNext)
+                {
+                    newFoot = Instantiate(pathData.rightFoot, spawnPos, rightFoot.transform.rotation);
+                    feets.Add(newFoot);
+                }
+                else
+                {
+                    newFoot = (Instantiate(pathData.leftFoot, spawnPos, leftFoot.transform.rotation));
+                    feets.Add(newFoot);
+                }
+
+                lastFootPrint = newFoot.transform;
                 isRightFootNext = !isRightFootNext;
 
+                if(feets.Count == 10 & currentDirectionIndex < pathData.directionChanges.Count)
+                {
+                    float angle = pathData.directionChanges[currentDirectionIndex];
+                    Quaternion turn = Quaternion.Euler(0, angle, 0);
+                    currentDir = turn * currentDir;
+
+                    currentDirectionIndex++; //move to next direction change for next time
+                }
 
 
+            }
+        }
 
-
-            }*/ 
+        
 
         
 
         
     }
+
+    
 
     
     

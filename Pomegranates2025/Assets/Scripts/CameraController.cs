@@ -18,6 +18,8 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         //for any of the cameras in our list
+        //loops thru them
+        //if we have 4 camera i goes from 0 to 3
         for (int i = 0; i < cameras.Count; i++)
         {
             //maps index 0 to alpha 0 key and so on
@@ -30,11 +32,21 @@ public class CameraController : MonoBehaviour
 
     }
 
+    //function to switch cam at the index
     void SwitchCamera(int camNumber)
     {
+        //loops over our cameras
         for(int i = 0; i< cameras.Count;i++)
         {
-            cameras[i].gameObject.SetActive(i == camNumber);
+            //i == camNumber checks if this is the camera we want to turn on (true/false)
+            if(i == camNumber)
+            {
+                cameras[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                cameras[i].gameObject.SetActive(false);
+            }
         }
         
     }
