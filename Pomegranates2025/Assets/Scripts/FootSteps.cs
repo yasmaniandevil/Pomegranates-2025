@@ -67,7 +67,7 @@ public class footSteps : MonoBehaviour
                 lastFootPrint = newFoot.transform;
                 isRightFootNext = !isRightFootNext;
 
-                if(feets.Count == 10 & currentDirectionIndex < pathData.directionChanges.Count)
+                if(feets.Count == 10 && currentDirectionIndex < pathData.directionChanges.Count)
                 {
                     float angle = pathData.directionChanges[currentDirectionIndex];
                     Quaternion turn = Quaternion.Euler(0, angle, 0);
