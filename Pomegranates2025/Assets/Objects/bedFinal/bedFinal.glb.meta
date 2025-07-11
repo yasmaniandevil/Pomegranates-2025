@@ -1,0 +1,91 @@
+fileFormatVersion: 2
+guid: 65d36d9fc1b335548b6adc50b5527dd9
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 804e1ce4c496647cfa3f1a1134187c71, type: 3}
+  _removeEmptyRootObjects: 1
+  _scaleFactor: 1
+  _deduplicateResources: 0
+  _maximumLod: 300
+  _readWriteEnabled: 1
+  _generateColliders: 0
+  _addColliders: 0
+  _swapUvs: 0
+  _generateLightmapUVs: 0
+  _importBlendShapeNames: 1
+  _blendShapeFrameWeight:
+    _option: 0
+    _multiplier: 1
+  _importNormals: 0
+  _importTangents: 0
+  _importCamera: 2
+  _importAnimations: 2
+  _mecanimHumanoidFlip: 0
+  _addAnimatorComponent: 0
+  _animationLoopTime: 1
+  _animationLoopPose: 0
+  _importMaterials: 1
+  _enableGpuInstancing: 0
+  _texturesReadWriteEnabled: 1
+  _generateMipMaps: 1
+  _useSceneNameIdentifier: 1
+  _textureCompression: -50
+  _gltfAsset: '<b>Generator: </b>Tilt Brush 23.3.841faedfb compatible (Actually:
+    Open Brush 2.10.0.)
+
+    <b>Version: </b>2.0
+
+    <b>Copyright: </b>Unknown.
+
+    
+
+    <b>Extras:
+    </b>
+
+'
+  optimizeGameObjects: 0
+  materials:
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}
+  - {instanceID: 0}
+  textures:
+  - {fileID: 2800000, guid: 36e6d96935e2b4c42950986e62c1264b, type: 3}
+  - {fileID: 2800000, guid: 569acfd56b69f3d4da24fcaf2fd66c6d, type: 3}
+  - {fileID: 2800000, guid: 1b9ef9ad5868049469d13f726690201e, type: 3}
+  - {fileID: 2800000, guid: ea34bcd70d58ff54da108fe7ebf9a4fb, type: 3}
+  - {fileID: 2800000, guid: d298029de3a893d4ab4cce5e1ce47283, type: 3}
+  hasSceneData: 1
+  hasAnimationData: 0
+  hasMaterialData: 1
+  hasTextureData: 1
+  animations: []
+  _extensions:
+  - name: GOOGLE_tilt_brush_material
+    supported: 1
+    used: 1
+    required: 0
+  _textures:
+  - texture: {fileID: 2800000, guid: 36e6d96935e2b4c42950986e62c1264b, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: 2800000, guid: 569acfd56b69f3d4da24fcaf2fd66c6d, type: 3}
+    shouldBeLinear: 1
+    shouldBeNormalMap: 1
+  - texture: {fileID: 2800000, guid: 1b9ef9ad5868049469d13f726690201e, type: 3}
+    shouldBeLinear: 1
+    shouldBeNormalMap: 1
+  - texture: {fileID: 2800000, guid: ea34bcd70d58ff54da108fe7ebf9a4fb, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: 2800000, guid: d298029de3a893d4ab4cce5e1ce47283, type: 3}
+    shouldBeLinear: 1
+    shouldBeNormalMap: 1
+  _mainAssetIdentifier: scenes/Scene
+  _importPlugins: []
