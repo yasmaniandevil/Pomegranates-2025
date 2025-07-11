@@ -18,6 +18,13 @@
       },
       "url": "https://registry.npmjs.com"
     },
+    "com.icosa.open-brush-unity-tools": {
+      "version": "https://github.com/icosa-foundation/open-brush-unity-tools.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4b51f2015d3a8c3962adaa8487f303a28b122360"
+    },
     "com.unity.burst": {
       "version": "1.8.18",
       "depth": 1,
@@ -76,7 +83,7 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.2.1",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -178,6 +185,18 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "org.khronos.unitygltf": {
+      "version": "https://github.com/KhronosGroup/UnityGLTF.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.shadergraph": "10.0.0",
+        "com.unity.mathematics": "1.0.0"
+      },
+      "hash": "44fb778502594b0eb7d0fdc37e67be5a653e7fa5"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
