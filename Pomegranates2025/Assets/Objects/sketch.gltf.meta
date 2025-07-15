@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 65d36d9fc1b335548b6adc50b5527dd9
+guid: 85d1b3ab280edf140a7b1034e6d5d43f
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -54,13 +54,11 @@ ScriptedImporter:
   - {instanceID: 0}
   - {instanceID: 0}
   - {instanceID: 0}
-  - {instanceID: 0}
   textures:
-  - {fileID: 2800000, guid: 36e6d96935e2b4c42950986e62c1264b, type: 3}
-  - {fileID: 2800000, guid: 569acfd56b69f3d4da24fcaf2fd66c6d, type: 3}
-  - {fileID: 2800000, guid: 1b9ef9ad5868049469d13f726690201e, type: 3}
-  - {fileID: 2800000, guid: ea34bcd70d58ff54da108fe7ebf9a4fb, type: 3}
-  - {fileID: 2800000, guid: d298029de3a893d4ab4cce5e1ce47283, type: 3}
+  - {fileID: 2800000, guid: c9ce4786e2e8ca946b555be45d99b8e4, type: 3}
+  - {fileID: 2800000, guid: cd929f9d058e8b4408da8eeafc8af9f1, type: 3}
+  - {fileID: 2800000, guid: 917a597ad6ae3704eb7e150d5ea08973, type: 3}
+  - {fileID: 2800000, guid: c2df38d24cad6fb43b7594dd53843d50, type: 3}
   hasSceneData: 1
   hasAnimationData: 0
   hasMaterialData: 1
@@ -72,19 +70,16 @@ ScriptedImporter:
     used: 1
     required: 0
   _textures:
-  - texture: {fileID: 2800000, guid: 36e6d96935e2b4c42950986e62c1264b, type: 3}
+  - texture: {fileID: 2800000, guid: c9ce4786e2e8ca946b555be45d99b8e4, type: 3}
     shouldBeLinear: 0
     shouldBeNormalMap: 0
-  - texture: {fileID: 2800000, guid: 569acfd56b69f3d4da24fcaf2fd66c6d, type: 3}
+  - texture: {fileID: 2800000, guid: cd929f9d058e8b4408da8eeafc8af9f1, type: 3}
     shouldBeLinear: 1
     shouldBeNormalMap: 1
-  - texture: {fileID: 2800000, guid: 1b9ef9ad5868049469d13f726690201e, type: 3}
-    shouldBeLinear: 1
-    shouldBeNormalMap: 1
-  - texture: {fileID: 2800000, guid: ea34bcd70d58ff54da108fe7ebf9a4fb, type: 3}
+  - texture: {fileID: 2800000, guid: 917a597ad6ae3704eb7e150d5ea08973, type: 3}
     shouldBeLinear: 0
     shouldBeNormalMap: 0
-  - texture: {fileID: 2800000, guid: d298029de3a893d4ab4cce5e1ce47283, type: 3}
+  - texture: {fileID: 2800000, guid: c2df38d24cad6fb43b7594dd53843d50, type: 3}
     shouldBeLinear: 1
     shouldBeNormalMap: 1
   _mainAssetIdentifier: scenes/Scene
