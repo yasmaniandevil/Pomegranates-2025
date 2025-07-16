@@ -1,0 +1,86 @@
+fileFormatVersion: 2
+guid: 85d1b3ab280edf140a7b1034e6d5d43f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 804e1ce4c496647cfa3f1a1134187c71, type: 3}
+  _removeEmptyRootObjects: 1
+  _scaleFactor: 1
+  _deduplicateResources: 0
+  _maximumLod: 300
+  _readWriteEnabled: 1
+  _generateColliders: 0
+  _addColliders: 0
+  _swapUvs: 0
+  _generateLightmapUVs: 0
+  _importBlendShapeNames: 1
+  _blendShapeFrameWeight:
+    _option: 0
+    _multiplier: 1
+  _importNormals: 0
+  _importTangents: 0
+  _importCamera: 2
+  _importAnimations: 0
+  _mecanimHumanoidFlip: 0
+  _addAnimatorComponent: 0
+  _animationLoopTime: 1
+  _animationLoopPose: 0
+  _importMaterials: 1
+  _enableGpuInstancing: 0
+  _texturesReadWriteEnabled: 1
+  _generateMipMaps: 1
+  _useSceneNameIdentifier: 1
+  _textureCompression: -50
+  _gltfAsset: '<b>Generator: </b>Tilt Brush 23.3.841faedfb compatible (Actually:
+    Open Brush 2.10.0.)
+
+    <b>Version: </b>2.0
+
+    <b>Copyright: </b>Unknown.
+
+    
+
+    <b>Extras:
+    </b>
+
+'
+  optimizeGameObjects: 0
+  materials:
+  - {fileID: -6007110766045506738, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  - {fileID: 6405746680382906345, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  - {fileID: -4046617434405864298, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  - {fileID: 7204127257714656562, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  textures:
+  - {fileID: -8407744449772999713, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  - {fileID: 2948536132329335978, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  - {fileID: -77039854113122228, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  - {fileID: -3460155384080355322, guid: 85d1b3ab280edf140a7b1034e6d5d43f, type: 3}
+  hasSceneData: 1
+  hasAnimationData: 0
+  hasMaterialData: 1
+  hasTextureData: 1
+  animations: []
+  _extensions:
+  - name: GOOGLE_tilt_brush_material
+    supported: 1
+    used: 1
+    required: 0
+  _textures:
+  - texture: {instanceID: 0}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {instanceID: 0}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {instanceID: 0}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {instanceID: 0}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  _mainAssetIdentifier: scenes/Scene
+  _importPlugins: []
