@@ -23,6 +23,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,6 +63,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: aec738f429fa4ab4a8b574c7c804886c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _IntensityMask:
+        m_Texture: {fileID: 2800000, guid: fa6235bc65ac4064f8d49fcc0c8ff503, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -71,11 +79,27 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseEdgesTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
+        m_Texture: {fileID: 2800000, guid: 3327b545e30728e47b34b9588ff64aef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OpacityMask:
+        m_Texture: {fileID: 2800000, guid: 171b695a70c8bb2439da87f69178c81b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -98,10 +122,21 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaAffectsOpacity: 1
+    - _AlphaClip: 0
     - _AlphaCutoff: 0.5
     - _AlphaIsDissolve: 1
+    - _AlphaToMask: 0
+    - _BaseColorEdgesLerp: 0
+    - _Blend: 0
+    - _BlendOp: 0
     - _BumpScale: 1
+    - _CameraDepthFadeLength: 3
+    - _CameraDepthFadeOffset: 0.1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
     - _CameraOffset: 0
+    - _ColorMode: 0
     - _ColorSmoothstep: 0
     - _ColorSmoothstepSmoothness: 1
     - _Cull: 2
@@ -109,19 +144,35 @@ Material:
     - _DepthFade: 0
     - _DetailNormalMapScale: 1
     - _DistortionAmount: 0.2
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionIntensity: 1
+    - _DistortionLerp: 1
     - _DistortionMaskIntensity: 1
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0
     - _Distortion_Amount: 0
     - _Dst: 10
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _EdgesBias: 0
+    - _EdgesMultiply: 1
+    - _EdgesPower: 1
+    - _EmissionEnabled: 0
+    - _EmissionIntensity: 1
     - _EmissiveIntensity: 3
+    - _EnvironmentReflections: 1
+    - _Erosion: 0
     - _ErosionMultiply: 1
     - _ErosionPower: 1
+    - _ErosionSmoothness: 1
     - _ErosionSmoothstep: 0
     - _ErosionSmoothstepSmoothness: 0.3
     - _Erosion_Intensity: 1
     - _Erosion_Intensity1: -0.5
     - _Erosion_Multiply: 1
     - _Erosion_Power: 2
+    - _FlipbookMode: 0
     - _Global_Scale: 1
     - _Global_Scale1: 1
     - _Global_Scale2: 1
@@ -129,6 +180,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _InflateToggle: 0
+    - _IntensityMaskMultiply: 1
+    - _IntensityMaskPower: 1
+    - _LightingEnabled: 0
     - _MaskDistortionIntensity: 1
     - _MaskMultiply: 1
     - _MaskPower: 1
@@ -138,26 +193,45 @@ Material:
     - _Mask_Power: 1
     - _Metallic: 0
     - _Mode: 0
+    - _Noise01Intensity: -1
+    - _NoiseDepth: 0
+    - _NoiseMultiply: 1
     - _OcclusionStrength: 1
+    - _OpacityMaskMultiply: 1
+    - _OpacityMaskPower: 1
+    - _OpacityMultiply: 1
     - _Opacity_Boost: 1
+    - _OutlineMax: 0.01
     - _OverallSpeed: 1
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SampleGI: 0
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
+    - _Specular: 0
     - _SpecularHighlights: 1
     - _Src: 5
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
     - _UVSec: 0
+    - _VertexColors: 1
     - _WindSpeed: -5
     - _ZTest: 2
-    - _ZWrite: 0
+    - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 0.70992804, g: 1, b: 0.10196078, a: 0}
-    - _Color02: {r: 0.10196079, g: 1, b: 0.2509804, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color01: {r: 0, g: 0.17574356, b: 0.509434, a: 0}
+    - _Color02: {r: 0.4056604, g: 0.24969324, b: 0, a: 0}
+    - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _ColorPanSpeed: {r: -0.733, g: 0.113, b: 0, a: 0}
     - _ColorUVScale: {r: 0.5, g: 1, b: 0, a: 0}
     - _Color_01: {r: 0.5323144, g: 0.3, b: 1, a: 0}
@@ -169,13 +243,24 @@ Material:
     - _DistortionUVScale: {r: 0.1, g: 0.3, b: 0, a: 0}
     - _Distortion_Scale: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Distortion_Speed: {r: 0, g: 0, b: 0, a: 0}
+    - _EdgesColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ErosionPanSpeed: {r: -0.337, g: 0.07, b: 0, a: 0}
     - _ErosionUVScale: {r: 0.1, g: 0.3, b: 0, a: 0}
     - _Erosion_Scale: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Erosion_Speed: {r: 0.25, g: 0, b: 0, a: 0}
+    - _IntensityMaskOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _IntensityMaskPanSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _IntensityMaskUVS: {r: 1, g: 1, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MaskPanSpeed: {r: -2.2, g: 0, b: 0, a: 0}
     - _MaskUVScale: {r: 0.25, g: 1, b: 0, a: 0}
     - _Mask_Scale: {r: 0.5, g: 1, b: 0, a: 0}
     - _Mask_Speed: {r: 0.5, g: 0, b: 0, a: 0}
+    - _Noise01UVP: {r: 0.1, g: 0.3, b: 0, a: 0}
+    - _Noise01UVS: {r: 1, g: 1, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _WorldNoiseSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _WorldNoiseTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
