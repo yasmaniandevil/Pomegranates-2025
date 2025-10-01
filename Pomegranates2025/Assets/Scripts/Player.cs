@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     bool pickedUp;
     bool phoneInPocket = true;
 
-   
+
     public Transform groundCheck;
     private float groundDistance = .2f;
     public bool isGrounded;
@@ -40,20 +40,20 @@ public class Player : MonoBehaviour
     public Transform leftFoot;
     public Transform rightFoot;
 
-    
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         cc = GetComponent<CharacterController>();
 
 
         //playerCamera = GetComponentInChildren<Transform>();
         playerCamera = GameObject.FindWithTag("MainCamera");
-        
-        Debug.Log(playerCamera.name);
+
+        // Debug.Log(playerCamera.name);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         move = (transform.right * horizontalX) + (transform.forward * forwardZ);
 
         cc.Move(move * moveSpeed * Time.deltaTime);
-        
+
 
         CameraLook();
 
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 
         //reticle is always red
         reticle.GetComponent<Image>().color = Color.red;
-       
+
 
         //shoot ray for reticle
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -87,12 +87,12 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 5))
         {
             //if object has interactable tag
-            if(hit.collider.CompareTag("Interactable"))
+            if (hit.collider.CompareTag("Interactable"))
             {
                 //turn reticle black
                 reticle.GetComponent<Image>().color = Color.black;
             }
-       
+
         }
 
         //FootCheck();
@@ -107,11 +107,11 @@ public class Player : MonoBehaviour
 
         isOnLeftFootPrint = Physics.Raycast(leftFoot.position, Vector3.down, groundDistance, leftFootLayer);
         Debug.DrawRay(leftFoot.position, Vector3.down * groundDistance, Color.red);
-        Debug.Log(isOnLeftFootPrint);
+        // Debug.Log(isOnLeftFootPrint);
 
         isOnRightFootPrint = Physics.Raycast(rightFoot.position, Vector3.down, groundDistance, rightFootLayer);
-        Debug.DrawRay(rightFoot.position, Vector3.down * groundDistance, Color.red);
-        Debug.Log(isOnRightFootPrint);
+        //Debug.DrawRay(rightFoot.position, Vector3.down * groundDistance, Color.red);
+        //Debug.Log(isOnRightFootPrint);
     }
 
     void CameraLook()
@@ -133,10 +133,10 @@ public class Player : MonoBehaviour
         //clamp rotation
         xRotation = Mathf.Clamp(xRotation, -90, 90); //prevent flipping
 
-        
+
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        
+
     }
 
     //picking up the phone
@@ -146,25 +146,25 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Interactable"))
         {
             interactPopUp.SetActive(true);
-            
+
             //if we press E we grab the phone and destroy the pick up item
             //set picked up to true
             if (Input.GetKey(KeyCode.E))
             {
-                
+
                 phonePrefab.SetActive(true);
                 //Debug.Log("Can pick up: " + canPickUp);
                 other.gameObject.SetActive(false);
                 pickedUp = true;
-                
+
             }
-            
+
         }
     }
 
     void PhoneInPocket()
     {
-        
+
         //if we already picked it up
         if (pickedUp)
         {
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
             {
                 //toggles it to true or false each time you picked it up
                 phoneInPocket = !phoneInPocket;
-                
+
 
                 //if ur phone is not in ur pocket than u r using it
                 if (!phoneInPocket)
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
 
     void FootCheck()
     {
-        
+
 
 
     }

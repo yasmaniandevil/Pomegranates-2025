@@ -19,7 +19,7 @@ public class Cook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnMouseDown()
     {
@@ -39,7 +39,7 @@ public class Cook : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
             transform.position = rayPoint + point;
-            
+
 
         }
 
@@ -48,9 +48,9 @@ public class Cook : MonoBehaviour
 
     private void OnMouseUp()
     {
-        Debug.Log("mouse up");
+        // Debug.Log("mouse up");
         dragging = false;
         foodBody.isKinematic = false;
-        
+
     }
 }
