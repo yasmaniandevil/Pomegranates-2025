@@ -18,6 +18,7 @@
   "dependencies": {
     "ai.videokit.videokit": "0.0.22",
     "com.icosa.open-brush-unity-tools": "https://github.com/icosa-foundation/open-brush-unity-tools.git#upm",
+    "com.unity.ai.navigation": "1.1.7",
     "com.unity.burst": "1.8.18",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.ext.nunit": "1.0.6",
@@ -33,6 +34,7 @@
     "com.unity.test-framework": "1.1.33",
     "com.unity.textmeshpro": "3.0.9",
     "com.unity.timeline": "1.7.6",
+    "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.10",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
     "org.khronos.unitygltf": "https://github.com/KhronosGroup/UnityGLTF.git",

@@ -9,7 +9,7 @@ public class MoveTrail : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -17,10 +17,10 @@ public class MoveTrail : MonoBehaviour
     {
         //move obj towards target pos
         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-        
-        if(transform.position == targetPos)
+
+        if (transform.position == targetPos)
         {
-            Debug.Log("reached position");
+            //Debug.Log("reached position");
         }
     }
 }

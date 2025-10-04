@@ -27,7 +27,7 @@ public class footSteps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         currentDir = pathData.startingPos.forward;
     }
 
@@ -38,7 +38,7 @@ public class footSteps : MonoBehaviour
 
         //make sure the player isnt too far away
         distance = Vector3.Distance(lastFootPrint.position, player.transform.position);
-        Debug.Log("distance: " + distance);
+        // Debug.Log("distance: " + distance);
     }
 
     void PlayFeet()
@@ -66,7 +66,7 @@ public class footSteps : MonoBehaviour
                 lastFootPrint = newFoot.transform;
                 isRightFootNext = !isRightFootNext;
 
-                if(feets.Count == 7 && currentDirectionIndex < pathData.directionChanges.Count)
+                if (feets.Count == 7 && currentDirectionIndex < pathData.directionChanges.Count)
                 {
                     float angle = pathData.directionChanges[currentDirectionIndex];
                     Quaternion turn = Quaternion.Euler(0, angle, 0);
@@ -79,15 +79,15 @@ public class footSteps : MonoBehaviour
             }
         }
 
-        
 
-        
 
-        
+
+
+
     }
 
-    
 
-    
-    
+
+
+
 }
