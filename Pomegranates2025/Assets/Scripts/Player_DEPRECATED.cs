@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
 
     }
 
+    // foot stuff???
     private void FixedUpdate()
     {
         isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, groundDistance, groundLayer);

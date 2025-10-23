@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Phone
   - Interactable
+  - Outside
+  - Inside
   layers:
   - Default
   - TransparentFX

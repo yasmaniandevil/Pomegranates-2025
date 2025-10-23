@@ -8,7 +8,6 @@ public class NPCWalkingState : NPCBaseState
     private bool waklingToDest;
     public override void EnterState(NPCStateManager npc)
     {
-        Debug.Log("NPC: Walking State");
         // Destination not set yet
         waklingToDest = false;
 
@@ -37,8 +36,8 @@ public class NPCWalkingState : NPCBaseState
             if (NavMesh.SamplePosition(worldTargetPosition, out hit, 15.0f, NavMesh.AllAreas))
             {
                 // set animation and walking animation
-                npc.setDestination(hit.position);
-                npc.setAnimatorWalking(true);
+                npc.SetDestination(hit.position);
+                npc.SetAnimatorWalking(true);
                 waklingToDest = true;
             }
             else
@@ -49,12 +48,12 @@ public class NPCWalkingState : NPCBaseState
 
         // See if NavMeshAgent has reached destination
         if (
-            (npc.getAgent().remainingDistance <= npc.getAgent().stoppingDistance)
-            && (!npc.getAgent().hasPath || npc.getAgent().velocity.sqrMagnitude == 0f)
+            (npc.GetAgent().remainingDistance <= npc.GetAgent().stoppingDistance)
+            && (!npc.GetAgent().hasPath || npc.GetAgent().velocity.sqrMagnitude == 0f)
         )
         {
             // Ensure npc is back to idle animation and then switch back to idle!
-            npc.setAnimatorWalking(false);
+            npc.SetAnimatorWalking(false);
 
             // Make index increment so next time we enter walking state it's a new dest.
             npc.index += 1;
