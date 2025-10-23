@@ -71,27 +71,26 @@ public class NPCStateManager : MonoBehaviour
     // Switch States
     public void SwitchState(NPCBaseState state)
     {
-        Debug.Log("Switching States");
         currentState = state;
         state.EnterState(this);
     }
 
-    public Animator getAnimator()
+    public Animator GetAnimator()
     {
         return animator;
     }
 
-    public NavMeshAgent getAgent()
+    public NavMeshAgent GetAgent()
     {
         return agent;
     }
 
-    public void setAnimatorWalking(bool setWalking)
+    public void SetAnimatorWalking(bool setWalking)
     {
         animator.SetBool("Walking", setWalking);
     }
 
-    public void setDestination(Vector3 destination)
+    public void SetDestination(Vector3 destination)
     {
         agent.SetDestination(destination);
     }

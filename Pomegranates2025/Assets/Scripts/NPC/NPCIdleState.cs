@@ -10,13 +10,11 @@ public class NPCIdleState : NPCBaseState
 
     public override void EnterState(NPCStateManager npc)
     {
-        Debug.Log("NPC: Idle State");
-
         // Reset timer
         timeRemaining = Random.Range(13.0f, 15.0f);
 
         // Ensure that we are not walking! Base case error handling
-        Animator temp = npc.getAnimator();
+        Animator temp = npc.GetAnimator();
 
         if (temp.GetBool("Walking") == true)
         {
