@@ -112,7 +112,7 @@ public class PlayerStateManager : MonoBehaviour
 
         // Reticle
 
-        /*
+
         reticle.GetComponent<Image>().color = Color.red;
 
         //shoot ray for reticle
@@ -128,10 +128,13 @@ public class PlayerStateManager : MonoBehaviour
             {
                 //turn reticle black
                 reticle.GetComponent<Image>().color = Color.black;
+
+                // add a bool to handleInteract begin water pump
+                // setWaterPumpingInteract = true
             }
 
         }
-        */
+
 
         currentState.UpdateState(this);
     }
@@ -242,6 +245,11 @@ public class PlayerStateManager : MonoBehaviour
 
         if (playerInputHandler.InteractTriggered == true)
         {
+            // if setWaterPumpingInteract == true && filledWater == false
+
+            // have a float that over fillAmount = time.deltatime * waterfillfrequency fills up from 0 -> 100
+            // during water fill have animation for bucket fill progressively. Fill amount animation = fillAmount (speed of animation is tied to fillAmount)
+            // When water at max, stop water fill animation and set filledWater (new bool for player) to true 
             Debug.Log("i'm pressed");
         }
     }
