@@ -44,7 +44,7 @@ public class PlayerStateManager : MonoBehaviour
     private CharacterController cc;
 
     [SerializeField] private PlayerInputHandler playerInputHandler;
-    [SerializeField] private Transform cameraHolder;
+    
 
     // Current Movement
     private Vector3 currentMovement;
@@ -126,8 +126,23 @@ public class PlayerStateManager : MonoBehaviour
             //if object has interactable tag
             if (hit.collider.CompareTag("Interactable"))
             {
+                
                 //turn reticle black
                 reticle.GetComponent<Image>().color = Color.black;
+
+                if (hit.collider.name == "WaterPumpCollider")
+                {
+                    //Debug.Log("hit water collider");
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        AnimationPlay animation = GetComponent<AnimationPlay>();
+                        Debug.Log("Got animation");
+                        //animation.PlayAnimation();
+                    }
+                }
+
+
+
 
                 // add a bool to handleInteract begin water pump
                 // setWaterPumpingInteract = true
@@ -293,7 +308,7 @@ public class PlayerStateManager : MonoBehaviour
 
         // We only want to rotate the camera, not the whole player
         verticalRotation = Mathf.Clamp(verticalRotation - currentRotation.y, -upDownLookRange, upDownLookRange);
-        cameraHolder.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+        playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
     // Detects collision
