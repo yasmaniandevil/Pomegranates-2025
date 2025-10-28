@@ -265,9 +265,18 @@ public class PlayerStateManager : MonoBehaviour
                     {
                         AnimationPlay animation = GetComponent<AnimationPlay>();
                         Debug.Log("Got animation");
-                        //animation.PlayAnimation();
+                        animation.PlayAnimation();
                     }
                     */
+                }
+                if (hit.collider.name == "ContainerTub")
+                {
+                    bucketShow = true;
+                    if (playerInputHandler.InteractTriggered == true)
+                    {
+                        Debug.Log("ContainerTub Hit");
+                        handleInteract = false;
+                    }
                 }
                 // add a bool to handleInteract begin water pump
                 // setWaterPumpingInteract = true
@@ -282,7 +291,8 @@ public class PlayerStateManager : MonoBehaviour
         // Bucket values
         // bucket is at default position
         float distance = Vector3.Distance(bucketTransform.localPosition, bucketStartPos);
-        bucket.SetActive(distance > 0.05f);
+        if (bucket.activeSelf == false)
+            bucket.SetActive(distance > 0.05f);
 
         Vector3 targetPos = bucketShow ? bucketEndPos : bucketStartPos;
         bucketTransform.localPosition = Vector3.Lerp(bucketTransform.localPosition, targetPos, Time.deltaTime * smoothFactor);
