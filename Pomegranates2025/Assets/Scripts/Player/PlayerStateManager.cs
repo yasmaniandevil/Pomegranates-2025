@@ -19,11 +19,23 @@ public class PlayerStateManager : MonoBehaviour
     public float accelerationTime = 0.1f;
     public float decelerationTime = 0.2f;
 
+    [Header("Bucket Settings")]
+    [SerializeField] private GameObject bucket;
+    [SerializeField] private Animator bucketAnimator;
+    [SerializeField] private Transform bucketTransform;
+
+    private bool bucketShow = false;
+    private bool handleInteract = false;
+    private Vector3 bucketStartPos;
+    private Vector3 bucketEndPos;
+    private float smoothFactor = 7.0f;
+
     // Head bob 
 
     // these should increase with our set speed
     // Running: more frequency with maybe a little more amplitude (increases with speed)
     // Water: more bob, less frequency
+    [Header("Bob Settings")]
     [SerializeField, Range(0, 0.1f)] private float bobAmplitude = 0.005f;
     [SerializeField, Range(0, 30)] private float bobFrequency = 10f;
     private Vector3 startPosBob;
@@ -44,7 +56,8 @@ public class PlayerStateManager : MonoBehaviour
     private CharacterController cc;
 
     [SerializeField] private PlayerInputHandler playerInputHandler;
-    
+    [SerializeField] private Transform cameraHolder;
+
 
     // Current Movement
     private Vector3 currentMovement;
@@ -83,7 +96,6 @@ public class PlayerStateManager : MonoBehaviour
 
         // Bob Start Position
         startPosBob = playerCamera.transform.localPosition;
-
     }
 
     void Start()
@@ -95,6 +107,11 @@ public class PlayerStateManager : MonoBehaviour
         currentLocation = Location.Inside;
         currentState = insideState;
         insideState.EnterState(this);
+
+        // Bucket settings
+        handleInteract = false;
+        bucketStartPos = bucketTransform.localPosition;
+        bucketEndPos = new Vector3(bucketStartPos.x, bucketStartPos.y + 0.4f, bucketStartPos.z);
     }
 
     void Update()
@@ -109,47 +126,6 @@ public class PlayerStateManager : MonoBehaviour
         HandleInteract();
         // HandleMovement and HandleRotation
         // Handle input and logic update
-
-        // Reticle
-
-
-        reticle.GetComponent<Image>().color = Color.red;
-
-        //shoot ray for reticle
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-
-        //Shoots ray at 5 meters
-        if (Physics.Raycast(ray, out hit, 5))
-        {
-            //if object has interactable tag
-            if (hit.collider.CompareTag("Interactable"))
-            {
-                
-                //turn reticle black
-                reticle.GetComponent<Image>().color = Color.black;
-
-                if (hit.collider.name == "WaterPumpCollider")
-                {
-                    //Debug.Log("hit water collider");
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        AnimationPlay animation = GetComponent<AnimationPlay>();
-                        Debug.Log("Got animation");
-                        //animation.PlayAnimation();
-                    }
-                }
-
-
-
-
-                // add a bool to handleInteract begin water pump
-                // setWaterPumpingInteract = true
-            }
-
-        }
-
 
         currentState.UpdateState(this);
     }
@@ -257,16 +233,68 @@ public class PlayerStateManager : MonoBehaviour
     // LOCK THIS TO CERTAIN STATES!!!!! 
     private void HandleInteract()
     {
+        // Reticle
+        reticle.GetComponent<Image>().color = Color.red;
 
-        if (playerInputHandler.InteractTriggered == true)
+        //shoot ray for reticle
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+
+        //Shoots ray at 5 meters
+        if (Physics.Raycast(ray, out hit, 5))
         {
-            // if setWaterPumpingInteract == true && filledWater == false
+            //if object has interactable tag
+            if (hit.collider.CompareTag("Interactable"))
+            {
+                //turn reticle black
+                reticle.GetComponent<Image>().color = Color.black;
 
-            // have a float that over fillAmount = time.deltatime * waterfillfrequency fills up from 0 -> 100
-            // during water fill have animation for bucket fill progressively. Fill amount animation = fillAmount (speed of animation is tied to fillAmount)
-            // When water at max, stop water fill animation and set filledWater (new bool for player) to true 
-            Debug.Log("i'm pressed");
+                if (hit.collider.name == "WaterPumpCollider")
+                {
+                    bucketShow = true;
+                    if (playerInputHandler.InteractTriggered == true)
+                    {
+                        Debug.Log("Pressed");
+                        handleInteract = true;
+                    }
+
+                    //Debug.Log("hit water collider");
+                    /*
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        AnimationPlay animation = GetComponent<AnimationPlay>();
+                        Debug.Log("Got animation");
+                        //animation.PlayAnimation();
+                    }
+                    */
+                }
+                // add a bool to handleInteract begin water pump
+                // setWaterPumpingInteract = true
+            }
+
         }
+        else
+        {
+            bucketShow = false;
+        }
+
+        // Bucket values
+        // bucket is at default position
+        float distance = Vector3.Distance(bucketTransform.localPosition, bucketStartPos);
+        bucket.SetActive(distance > 0.05f);
+
+        Vector3 targetPos = bucketShow ? bucketEndPos : bucketStartPos;
+        bucketTransform.localPosition = Vector3.Lerp(bucketTransform.localPosition, targetPos, Time.deltaTime * smoothFactor);
+
+        bucketAnimator.SetBool("Filling", handleInteract);
+
+        // TODO: LOOK INTO CYCLE PARAMETER, NOT FOR RIGHT NOW
+        // if setWaterPumpingInteract == true && filledWater == false
+
+        // have a float that over fillAmount = time.deltatime * waterfillfrequency fills up from 0 -> 100
+        // during water fill have animation for bucket fill progressively. Fill amount animation = fillAmount (speed of animation is tied to fillAmount)
+        // When water at max, stop water fill animation and set filledWater (new bool for player) to true    
     }
 
     // Movement Handling - CHECK BOOL OF STATE AND LOCK IT IF NECESSARY
@@ -308,7 +336,7 @@ public class PlayerStateManager : MonoBehaviour
 
         // We only want to rotate the camera, not the whole player
         verticalRotation = Mathf.Clamp(verticalRotation - currentRotation.y, -upDownLookRange, upDownLookRange);
-        playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+        cameraHolder.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
     // Detects collision
