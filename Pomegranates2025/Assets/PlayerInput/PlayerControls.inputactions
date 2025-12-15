@@ -132,6 +132,102 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SecurityCamera",
+            "id": "acc16520-5967-44cf-ad47-ea0166bf2a60",
+            "actions": [
+                {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "1f26a449-1e9e-41e5-9ffe-60e362c7a4f7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Prev",
+                    "type": "Button",
+                    "id": "916cfe9a-c887-4d5d-a93c-59371a11eb15",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "474ee0e4-d9f3-40ee-957a-24ff24c2f138",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d92d1790-fd58-47da-9c64-f4715176d685",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Prev",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "2610161b-3ce2-45e1-a332-74fde5aa935d",
+            "actions": [
+                {
+                    "name": "RMC",
+                    "type": "Button",
+                    "id": "263beaab-8dd1-411a-8f45-8cdbcbe99972",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LMC",
+                    "type": "Button",
+                    "id": "dc77b6bf-b44a-4e41-9152-117116f61f34",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "048c6e48-d76d-4697-ba4a-a4477964fdc0",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RMC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69b48504-65d3-468d-9936-c8e1cfec7559",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LMC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

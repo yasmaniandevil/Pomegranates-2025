@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - Outside
   - Inside
+  - WorldSpaceCanvas
   layers:
   - Default
   - TransparentFX

@@ -4,67 +4,55 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [Header("Hospital Cameras")]
-    public Camera[] listOfCameras;
-    public Shader securityCameraShader;
+    [Header("Hospital Cameras - Render Texture Materials")]
+    public Material[] listOfCameraRenderTextureMats;
 
     private int camIndex = 0;
-    private Camera currentCam;
+    private MeshRenderer screenRenderer;
 
     void Awake()
     {
-        currentCam = listOfCameras[0];
-
-        currentCam.gameObject.SetActive(true);
-        currentCam.gameObject.tag = "MainCamera";
-        camIndex = 0;
-
-        for (int i = 0; i < listOfCameras.Length; i++)
-        {
-            listOfCameras[i].RenderWithShader(securityCameraShader, "");
-        }
+        screenRenderer = GetComponent<MeshRenderer>();
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        screenRenderer.material = listOfCameraRenderTextureMats[camIndex];
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Input for Camera Index
-        if (Input.GetKeyDown("e"))
-        {
-            camIndex += 1;
 
-            if (camIndex >= listOfCameras.Length)
-            {
-                camIndex = listOfCameras.Length - 1;
-            }
-        }
-
-        if (Input.GetKeyDown("q"))
-        {
-            camIndex -= 1;
-
-            if (camIndex < 0)
-            {
-                camIndex = 0;
-            }
-        }
 
         // Camera switch 
         // If this statement is true then we are at the end or beginning of the round robin -- don't switch.
-        if (listOfCameras[camIndex].gameObject.activeSelf == false)
+        if (screenRenderer.material != listOfCameraRenderTextureMats[camIndex])
         {
-            currentCam.gameObject.SetActive(false);
-            currentCam = listOfCameras[camIndex];
-            currentCam.gameObject.SetActive(true);
+            screenRenderer.material = listOfCameraRenderTextureMats[camIndex];
         }
+    }
 
+    // Input for Camera Index
 
+    void OnNext()
+    {
+        camIndex += 1;
+
+        if (camIndex >= listOfCameraRenderTextureMats.Length)
+        {
+            camIndex = listOfCameraRenderTextureMats.Length - 1;
+        }
+    }
+
+    void OnPrev()
+    {
+        camIndex -= 1;
+        if (camIndex < 0)
+        {
+            camIndex = 0;
+        }
     }
 }
