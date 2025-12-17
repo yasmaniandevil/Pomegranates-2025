@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraManager : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class CameraManager : MonoBehaviour
 
     private int camIndex = 0;
     private MeshRenderer screenRenderer;
+    private PlayerInput playerInput;
 
     void Awake()
     {
         screenRenderer = GetComponent<MeshRenderer>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
 
@@ -45,6 +48,11 @@ public class CameraManager : MonoBehaviour
         {
             camIndex = listOfCameraRenderTextureMats.Length - 1;
         }
+        else
+        {
+            AudioManager.instance.PlayGlobalSFX("CamClick");
+
+        }
     }
 
     void OnPrev()
@@ -54,5 +62,15 @@ public class CameraManager : MonoBehaviour
         {
             camIndex = 0;
         }
+        else
+        {
+            AudioManager.instance.PlayGlobalSFX("CamClick");
+
+        }
+    }
+
+    public void ActivateActionMap()
+    {
+        playerInput.enabled = true;
     }
 }

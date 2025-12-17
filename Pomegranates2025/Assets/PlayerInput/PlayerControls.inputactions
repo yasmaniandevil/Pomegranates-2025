@@ -228,6 +228,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Static",
+            "id": "3c5674d3-ad09-43d5-89f5-1751e5c77bed",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []
