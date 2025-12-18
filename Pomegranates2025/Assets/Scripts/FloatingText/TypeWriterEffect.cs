@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TypeWriterEffect : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class TypeWriterEffect : MonoBehaviour
     // Next Text Functionality
     private int chatInd = 0;
 
+    // player input
+    private PlayerInput playerInput;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -45,6 +49,9 @@ public class TypeWriterEffect : MonoBehaviour
         _interpunctuationDelay = new WaitForSeconds(interPunctuationDelay);
 
         _skipDelay = new WaitForSeconds(1 / (charactersPerSecond * skipSpeedup));
+
+        playerInput = GetComponent<PlayerInput>();
+
     }
 
     void Start()
@@ -152,5 +159,10 @@ public class TypeWriterEffect : MonoBehaviour
     {
         return c == '?' || c == '.' || c == ',' || c == ':' ||
                c == ';' || c == '!' || c == '-';
+    }
+
+    public void ActivateActionMap()
+    {
+        playerInput.enabled = true;
     }
 }
