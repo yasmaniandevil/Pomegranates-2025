@@ -8,6 +8,8 @@ TagManager:
   - Interactable
   - Outside
   - Inside
+  - WorldSpaceCanvas
+  - AudioManager
   layers:
   - Default
   - TransparentFX
