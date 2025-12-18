@@ -438,7 +438,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d6197053e02ed4484c5a52712aaa0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 3c45114aa43c8d34a986f7f179465466, type: 2}
   musicSource: {fileID: 1327841645}
   sfxSource: {fileID: 1713379458}
   backgroundMusic:
@@ -804,7 +804,7 @@ MonoBehaviour:
   soundFX:
   - title: CamClick
     clip: {fileID: 8300000, guid: 898b5ae494b99114fa5c5315fc06e6bc, type: 3}
-    volume: 1
+    volume: 0.75
     loop: 0
 --- !u!4 &588763392
 Transform:
@@ -1306,7 +1306,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 1
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -1809,7 +1809,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 1
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -2491,7 +2491,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 1
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
