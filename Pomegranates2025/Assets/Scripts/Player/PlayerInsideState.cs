@@ -14,6 +14,7 @@ public class PlayerInsideState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
+        /*
         //? WHILE LOOPS RUN IN A SINGLE FRAME AND NOT OVER TIME EVEN WITH TIME.DELTATIME!
         // When entering inside from outside we should be slowing down
         if (player.moveSpeed > 4.0f)
@@ -33,5 +34,6 @@ public class PlayerInsideState : PlayerBaseState
             player.SwitchState(player.outsideState);
         }
         return;
+        */
     }
 }
