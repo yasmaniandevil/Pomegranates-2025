@@ -151,7 +151,8 @@ GameObject:
   - component: {fileID: 6830411193031095726}
   - component: {fileID: 8749764280202404341}
   - component: {fileID: 1455443392673494239}
-  - component: {fileID: 8264145171184680472}
+  - component: {fileID: 4334329718753683502}
+  - component: {fileID: 8836647140277249993}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -295,7 +296,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8264145171184680472
+--- !u!114 &4334329718753683502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3954728946222120991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65de58ae5d07d8648ab3e2831c138bd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fef0ca9bbf61024fbe094f8f6b8b6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
@@ -324,6 +325,18 @@ MonoBehaviour:
   cameraHolder: {fileID: 4764098460466976988}
   playerCamera: {fileID: 8257024664850243007}
   reticle: {fileID: 6100864409541702684, guid: 43344238126b5cb48a6d30429fe3037b, type: 3}
+--- !u!114 &8836647140277249993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3954728946222120991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65de58ae5d07d8648ab3e2831c138bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7138910954627836679
 GameObject:
   m_ObjectHideFlags: 0
