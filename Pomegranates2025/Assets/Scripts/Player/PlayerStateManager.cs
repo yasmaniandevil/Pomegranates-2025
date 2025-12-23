@@ -19,7 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     // 2) Player Dread: The little boy, now with a present vinette we can use the unity URP post process volume, is a lot slower. Dread creeps in.
     // 3) Player Exit: The little boy dumps his water with a long interaction -- afterwards he is fast and light again but again this is decaying and we go back to 2) as he approaches the entrance
 
-
+    // States: Player speedup + player dread  
 
     // TODO: Replace the below trigger to account for above!
     // Location
