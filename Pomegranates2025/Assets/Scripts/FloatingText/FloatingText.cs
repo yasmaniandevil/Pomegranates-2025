@@ -7,9 +7,10 @@ public class FloatingText : MonoBehaviour
 {
     public Transform mainCam;
     public Vector3 offset;
+    public Vector3 offsetRotation;
 
     private Transform transformChild;
-
+    private Quaternion baseRotation;
 
     void Awake()
     {
@@ -20,7 +21,7 @@ public class FloatingText : MonoBehaviour
     void Start()
     {
         // START with camera look and then as player moves it won't matter! This shouldn't be in update!
-        transformChild.rotation = Quaternion.LookRotation(transformChild.position - mainCam.transform.position); // Always look at current Camera
+        baseRotation = Quaternion.LookRotation(transformChild.position - mainCam.transform.position); // Always look at current Camera
 
     }
 
@@ -29,5 +30,6 @@ public class FloatingText : MonoBehaviour
     {
         // move to start?
         transformChild.position = transform.position + offset;
+        transformChild.rotation = baseRotation * Quaternion.Euler(offsetRotation);
     }
 }

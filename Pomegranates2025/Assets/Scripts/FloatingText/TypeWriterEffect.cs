@@ -19,6 +19,8 @@ public class TypeWriterEffect : MonoBehaviour
     [SerializeField] private bool quickSkip;
     [SerializeField][Min(1)] private int skipSpeedup = 5;
 
+    [Header("Camera Single Activation Object")]
+    public CameraSingleActivation cameraSingleActivation;
 
     private TMP_Text textComp;
 
@@ -51,7 +53,6 @@ public class TypeWriterEffect : MonoBehaviour
         _skipDelay = new WaitForSeconds(1 / (charactersPerSecond * skipSpeedup));
 
         playerInput = GetComponent<PlayerInput>();
-
     }
 
     void Start()
@@ -63,9 +64,16 @@ public class TypeWriterEffect : MonoBehaviour
     void Update()
     {
 
+        // Theoretical end of text chain
+        if ((chatInd + 1 >= textBoxList.Length) && (textComp.maxVisibleCharacters == textComp.textInfo.characterCount))
+        {
+            cameraSingleActivation.EnableNext();
+        }
     }
 
 
+    /*
+    Skipping disabled for right now
     private void OnRMC()
     {
         // Debug.Log("Right");
@@ -74,6 +82,7 @@ public class TypeWriterEffect : MonoBehaviour
             Skip();
         }
     }
+    */
 
     private void OnLMC()
     {
