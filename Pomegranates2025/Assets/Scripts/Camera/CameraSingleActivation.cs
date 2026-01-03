@@ -7,7 +7,12 @@ public class CameraSingleActivation : MonoBehaviour
     public GameObject[] gameObjectsToActivate;
     public bool basicCooldown = true;
     public bool finalCamera = false;
+    public bool muteMusic;
+
+
     public CameraManager camManager;
+    public AudioManager audioManager;
+
 
 
     public void ActivateAllGameObjects()
@@ -15,6 +20,15 @@ public class CameraSingleActivation : MonoBehaviour
         for (int i = 0; i < gameObjectsToActivate.Length; i++)
         {
             gameObjectsToActivate[i].SetActive(true);
+        }
+
+        if (muteMusic)
+        {
+            audioManager.MuteBGMusic();
+        }
+        else
+        {
+            audioManager.UnMuteBGMusic();
         }
     }
 

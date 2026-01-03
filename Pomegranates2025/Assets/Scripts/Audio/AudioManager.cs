@@ -70,5 +70,14 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = backgroundMusic.clip;
         musicSource.Play();
     }
+
+    public void MuteBGMusic()
+    {
+        musicSource.mute = true;
+    }
+    public void UnMuteBGMusic()
+    {
+        musicSource.mute = false;
+    }
 }
 
