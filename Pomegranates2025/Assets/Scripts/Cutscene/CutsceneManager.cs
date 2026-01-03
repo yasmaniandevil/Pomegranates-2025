@@ -10,6 +10,7 @@ public class CutsceneManager : MonoBehaviour
 
     public TimelineAsset[] timelineAssets;
     private int timelineAssetInd;
+
     void Awake()
     {
         playableDirector = GetComponent<PlayableDirector>();
@@ -32,4 +33,5 @@ public class CutsceneManager : MonoBehaviour
         timelineAssetInd++;
         playableDirector.Play(timelineAssets[timelineAssetInd]);
     }
+
 }
