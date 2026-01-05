@@ -18,12 +18,7 @@ public class PlayerBody : MonoBehaviour
     [Header("Bucket Settings")]
     [SerializeField] private GameObject bucket;
     [SerializeField] private Animator bucketAnimator;
-    [SerializeField] private Transform bucketTransform;
 
-    private bool bucketShow = false;
-    private bool handleInteract = false;
-    private Vector3 bucketStartPos;
-    private Vector3 bucketEndPos;
     private float smoothFactor = 7.0f;
 
     // Head bob 
@@ -81,11 +76,6 @@ public class PlayerBody : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        // Bucket settings
-        handleInteract = false;
-        bucketStartPos = bucketTransform.localPosition;
-        bucketEndPos = new Vector3(bucketStartPos.x, bucketStartPos.y + 0.4f, bucketStartPos.z);
     }
 
     // Update is called once per frame
@@ -191,7 +181,6 @@ public class PlayerBody : MonoBehaviour
     }
 
     // LOCK THIS TO CERTAIN STATES!!!!! 
-    // TODO: Repalce this -- we are only emptying the bucket now!
     private void HandleInteract()
     {
         // Reticle
@@ -211,54 +200,18 @@ public class PlayerBody : MonoBehaviour
                 //turn reticle black
                 reticle.GetComponent<Image>().color = Color.black;
 
-                if (hit.collider.name == "WaterPumpCollider")
-                {
-                    bucketShow = true;
-                    if (playerInputHandler.InteractTriggered == true)
-                    {
-                        Debug.Log("Pressed");
-                        handleInteract = true;
-                    }
-
-                    //Debug.Log("hit water collider");
-                    /*
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        AnimationPlay animation = GetComponent<AnimationPlay>();
-                        Debug.Log("Got animation");
-                        animation.PlayAnimation();
-                    }
-                    */
-                }
                 if (hit.collider.name == "ContainerTub")
                 {
-                    bucketShow = true;
                     if (playerInputHandler.InteractTriggered == true)
                     {
+                        bucketAnimator.SetBool("Drain", true);
                         Debug.Log("ContainerTub Hit");
-                        handleInteract = false;
                     }
                 }
                 // add a bool to handleInteract begin water pump
                 // setWaterPumpingInteract = true
             }
-
         }
-        else
-        {
-            bucketShow = false;
-        }
-
-        // Bucket values
-        // bucket is at default position
-        float distance = Vector3.Distance(bucketTransform.localPosition, bucketStartPos);
-        if (bucket.activeSelf == false)
-            bucket.SetActive(distance > 0.05f);
-
-        Vector3 targetPos = bucketShow ? bucketEndPos : bucketStartPos;
-        bucketTransform.localPosition = Vector3.Lerp(bucketTransform.localPosition, targetPos, Time.deltaTime * smoothFactor);
-
-        bucketAnimator.SetBool("Filling", handleInteract);
 
         // TODO: LOOK INTO CYCLE PARAMETER, NOT FOR RIGHT NOW
         // if setWaterPumpingInteract == true && filledWater == false
