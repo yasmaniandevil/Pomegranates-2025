@@ -18,6 +18,7 @@ public class PlayerBody : MonoBehaviour
     [Header("Bucket Settings")]
     [SerializeField] private GameObject bucket;
     [SerializeField] private Animator bucketAnimator;
+    [SerializeField] private Transform bucketTransform;
 
     private float smoothFactor = 7.0f;
 
@@ -30,6 +31,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField, Range(0, 0.1f)] private float bobAmplitude = 0.005f;
     [SerializeField, Range(0, 30)] private float bobFrequency = 10f;
     private Vector3 startPosBob;
+    private Vector3 startBucketPosBob;
     private float bobTimerHori = 0f;
     private float bobTimerVert = 0f;
     private float currentBobAmplitude;
@@ -69,6 +71,7 @@ public class PlayerBody : MonoBehaviour
 
         // Bob Start Position
         startPosBob = playerCamera.transform.localPosition;
+        startBucketPosBob = bucketTransform.localPosition;
     }
 
     // Start is called before the first frame update
@@ -124,6 +127,7 @@ public class PlayerBody : MonoBehaviour
         {
             // Snap back to resting position
             playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition, startPosBob, 8f * Time.deltaTime);
+            bucketTransform.localPosition = Vector3.Lerp(bucketTransform.localPosition, startBucketPosBob, 8f * Time.deltaTime);
         }
 
         // Advance timer based on movement speed -- bob offset is time-based so we can deal with sudden velocity changes
@@ -138,6 +142,7 @@ public class PlayerBody : MonoBehaviour
         );
 
         playerCamera.transform.localPosition = startPosBob + offset; // no motion drift, camera position is ALWAYS computed as our startPos + offset so no cumulative error
+        bucketTransform.localPosition = startBucketPosBob + (offset * 0.25f);
 
     }
 
