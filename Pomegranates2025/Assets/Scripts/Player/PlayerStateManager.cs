@@ -42,10 +42,10 @@ public class PlayerStateManager : MonoBehaviour
 
     }
 
-    void Update()
+    /*void Update()
     {
         currentState.UpdateState(this);
-    }
+    }*/
 
     // Switch States
     public void SwitchState(PlayerBaseState state)

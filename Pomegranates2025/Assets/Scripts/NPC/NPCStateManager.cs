@@ -18,6 +18,9 @@ public class NPCStateManager : MonoBehaviour
     private NavMeshAgent agent;
     public int index;
 
+    public float lowRangeTimer = 13.0f;
+    public float highRangeTimer = 15.0f;
+
     // First thing called -- used for init
     void Awake()
     {
@@ -60,6 +63,7 @@ public class NPCStateManager : MonoBehaviour
 
         // For initialization reasons, need to do this part at Start
         destinationList.Insert(0, transform.localPosition);
+
     }
 
     // Update is called once per frame
@@ -73,6 +77,7 @@ public class NPCStateManager : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+   
     }
 
     public Animator GetAnimator()
@@ -88,6 +93,7 @@ public class NPCStateManager : MonoBehaviour
     public void SetAnimatorWalking(bool setWalking)
     {
         animator.SetBool("Walking", setWalking);
+        Debug.Log("walking bool: " + setWalking);
     }
 
     public void SetDestination(Vector3 destination)

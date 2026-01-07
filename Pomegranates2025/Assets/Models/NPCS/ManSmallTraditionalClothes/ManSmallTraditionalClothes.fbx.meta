@@ -3,9 +3,54 @@ guid: d4238aede713b3344bf8d30d00fe393e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3qallast
+    second: {fileID: 2100000, guid: eb25a24c5c2e32b45befbe99d43aac63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dish_f2
+    second: {fileID: 2100000, guid: e10c4353aae950b489f83f532ae8ba2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyebrow012
+    second: {fileID: 2100000, guid: 0d4181b558e073a49ba4ea448f4e1115, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyelashes01
+    second: {fileID: 2100000, guid: cec12ab2a5e1f8d4b88bd3e5684088a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: full_beard
+    second: {fileID: 2100000, guid: 9be3e451a7719d046abd9cf411aa914c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: low-poly
+    second: {fileID: 2100000, guid: 60489e57cc9dfba4b942973385bcf424, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mansmalltraditionalclothes
+    second: {fileID: 2100000, guid: 7ed12f1ffba60aa4981daf2b36485b2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes01
+    second: {fileID: 2100000, guid: 9c4ac1eb1e1c7244ba9043d12ec8e74d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes03
+    second: {fileID: 2100000, guid: d54c9e1b7f6b078478aff5c39c83c155, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1

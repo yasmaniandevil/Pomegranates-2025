@@ -3,9 +3,54 @@ guid: 00e448fdc9b4b5a4aafad85832ebb1d8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crudefemaletshirt
+    second: {fileID: 2100000, guid: 023febb99acc7a5459ed69505f2810ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crudeloosepants
+    second: {fileID: 2100000, guid: e69112e2a13a4334eb6994c278b183bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyebrow008
+    second: {fileID: 2100000, guid: dd31b3586eee44c4bb009bd1f52a4238, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyelashes01
+    second: {fileID: 2100000, guid: 84f6061643f390d48a7fe09f127bf5d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: high-poly
+    second: {fileID: 2100000, guid: 7d34fd07c18829746afb25087a4dfa8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hijablast
+    second: {fileID: 2100000, guid: 81d55bf46079bad4d90a05ec92bd7e15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: short04
+    second: {fileID: 2100000, guid: b6b949e7c2916144ba48b688add848a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tennisshoes
+    second: {fileID: 2100000, guid: 90e493c14b27a61439b023cafb02936e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: womansmallerhijabi
+    second: {fileID: 2100000, guid: 90e736db9c9044942a1f00c0c5f51820, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1

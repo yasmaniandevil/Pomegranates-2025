@@ -11,7 +11,7 @@ public class NPCIdleState : NPCBaseState
     public override void EnterState(NPCStateManager npc)
     {
         // Reset timer
-        timeRemaining = Random.Range(13.0f, 15.0f);
+        timeRemaining = Random.Range(npc.lowRangeTimer, npc.highRangeTimer);
 
         // Ensure that we are not walking! Base case error handling
         Animator temp = npc.GetAnimator();
@@ -20,6 +20,8 @@ public class NPCIdleState : NPCBaseState
         {
             temp.SetBool("Walking", false);
         }
+
+     
     }
 
     public override void UpdateState(NPCStateManager npc)
@@ -30,6 +32,7 @@ public class NPCIdleState : NPCBaseState
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
+                //Debug.Log("time remaining: " + timeRemaining);
             }
             else
             {

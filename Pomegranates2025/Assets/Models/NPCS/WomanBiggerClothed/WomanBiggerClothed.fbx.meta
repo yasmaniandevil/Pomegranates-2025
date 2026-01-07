@@ -3,9 +3,54 @@ guid: e8ab931777cbb404fbc57020f87c42b6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crudegown
+    second: {fileID: 2100000, guid: d8903a07fa2575646b6c9a9c9ffa37ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyebrow008
+    second: {fileID: 2100000, guid: 8257d1df5ba9aa946bbf955eb51efcbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyelashes02
+    second: {fileID: 2100000, guid: 159b17278b20cac4193c9cd94ca32870, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: knitted_sweater_02
+    second: {fileID: 2100000, guid: 28040bb8b13788d4787e15601928bf2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: long01
+    second: {fileID: 2100000, guid: 1b0a6b012e2eac742bbb5915b91b06fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: low-poly
+    second: {fileID: 2100000, guid: b2dada27c565f0440a891dd9d89dd00c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pearl_chain_earrings
+    second: {fileID: 2100000, guid: 9888240a416c30a449e0a6f7b4dc2d07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes05
+    second: {fileID: 2100000, guid: 0956b7a2fe1a43249bd15300bd8d1d13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: womanbiggerclothed
+    second: {fileID: 2100000, guid: 33e0b396189967c48abb88424070370e, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
