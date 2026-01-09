@@ -10,6 +10,7 @@ TagManager:
   - Inside
   - WorldSpaceCanvas
   - AudioManager
+  - PlayerStateTrigger
   layers:
   - Default
   - TransparentFX

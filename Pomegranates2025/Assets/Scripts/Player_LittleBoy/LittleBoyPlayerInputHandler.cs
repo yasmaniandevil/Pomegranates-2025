@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputHandler : MonoBehaviour
+public class LittleBoyPlayerInputHandler : MonoBehaviour
 {
     [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset playerControls;
@@ -25,7 +25,15 @@ public class PlayerInputHandler : MonoBehaviour
 
     // Input action getters and setters
     public Vector2 MovementInput { get; private set; }
-    public bool InteractTriggered { get; private set; }
+    // public bool InteractHeld { get; private set; }
+
+    // Public state (read-only)
+    public bool InteractStarted { get; private set; }
+    public bool InteractCompleted { get; private set; }
+    public bool InteractCancelled { get; private set; }
+
+
+
     public bool JumpTriggered { get; private set; }
     public Vector2 RotationInput { get; private set; }
 
@@ -38,12 +46,24 @@ public class PlayerInputHandler : MonoBehaviour
         jumpAction = mapReference.FindAction(jump);
         rotationAction = mapReference.FindAction(rotation);
 
+        int bindingIndex = interactAction.bindings
+        .IndexOf(b => b.path == "<Keyboard>/e");
+
+
+        interactAction.ApplyBindingOverride(
+            bindingIndex,
+            new InputBinding
+            {
+                overrideInteractions = "hold(duration=4,pressPoint=0.5)"
+            }
+        );
+
+
         SubscribeActionValuesToInputEvents();
     }
 
     private void SubscribeActionValuesToInputEvents()
     {
-        Debug.Log("Subscribed");
         // performed happens every time movement action changes
         // += to subscribe and inputInfo is our temporary context
         // => is a lambda declaration
@@ -60,10 +80,54 @@ public class PlayerInputHandler : MonoBehaviour
         jumpAction.performed += inputInfo => JumpTriggered = true;
         jumpAction.canceled += inputInfo => JumpTriggered = false;
 
-        interactAction.started += inputInfo => InteractTriggered = true;
-        interactAction.performed += inputInfo => InteractTriggered = true;
-        interactAction.canceled += inputInfo => InteractTriggered = false;
+        /*
+        interactAction.started += inputInfo => InteractHeld = true; // Fires when the key goes down
+        interactAction.performed += inputInfo => InteractTriggered = true; // fires after the hold time completes
+        interactAction.canceled += inputInfo => InteractHeld = false; // fires when the key is released
+        */
 
+        interactAction.started += OnInteractStarted;
+        interactAction.performed += OnInteractPerformed;
+        interactAction.canceled += OnInteractCanceled;
+
+    }
+
+    private void OnInteractStarted(InputAction.CallbackContext ctx)
+    {
+        // New interaction cycle
+        InteractStarted = true;
+        InteractCompleted = false;
+        InteractCancelled = false;
+    }
+
+    private void OnInteractPerformed(InputAction.CallbackContext ctx)
+    {
+        // Hold finished (after 4 seconds)
+        InteractCompleted = true;
+    }
+
+    private void OnInteractCanceled(InputAction.CallbackContext ctx)
+    {
+        // Button released (before or after completion)
+        InteractCancelled = true;
+    }
+
+    public bool WasInterruptedBeforeCompletion()
+    {
+        return InteractCancelled && !InteractCompleted;
+    }
+
+    public bool WasReleasedAfterCompletion()
+    {
+        return InteractCancelled && InteractCompleted;
+    }
+
+    // Call this once you've consumed the input
+    public void ResetInteractFlags()
+    {
+        InteractStarted = false;
+        InteractCompleted = false;
+        InteractCancelled = false;
     }
 
     private void OnEnable()

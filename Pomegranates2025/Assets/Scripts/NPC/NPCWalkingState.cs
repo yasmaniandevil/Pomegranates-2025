@@ -26,7 +26,7 @@ public class NPCWalkingState : NPCBaseState
             worldTargetPosition = localTargetPosition;
         }
 
-        
+
     }
 
     public override void UpdateState(NPCStateManager npc)
@@ -34,7 +34,7 @@ public class NPCWalkingState : NPCBaseState
         // Destination ideally only set once!
         if (!waklingToDest)
         {
-           
+
             NavMeshHit hit;
             if (NavMesh.SamplePosition(worldTargetPosition, out hit, 15.0f, NavMesh.AllAreas))
             {
@@ -49,9 +49,9 @@ public class NPCWalkingState : NPCBaseState
             }
         }
 
-       
+
         // See if NavMeshAgent has reached destination
-        Debug.Log("remaining distance: " + npc.GetAgent().remainingDistance);
+        // Debug.Log("remaining distance: " + npc.GetAgent().remainingDistance);
         NavMeshAgent agent = npc.GetAgent();
 
         // See if NavMeshAgent has reached destination
