@@ -1,8 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerBody : MonoBehaviour
+
+public class LittleBoyPlayerBody : MonoBehaviour
 {
+    [Header("Player State Manager")]
+    [SerializeField] private LittleBoyPlayerStateManager playerStateManager;
+
     [Header("Controls")]
     public float moveSpeed = 4.0f;
     public float gravityMultiplier = 2;
@@ -16,11 +21,9 @@ public class PlayerBody : MonoBehaviour
     public float decelerationTime = 0.2f;
 
     [Header("Bucket Settings")]
-    [SerializeField] private GameObject bucket;
-    [SerializeField] private Animator bucketAnimator;
     [SerializeField] private Transform bucketTransform;
 
-    private float smoothFactor = 7.0f;
+    // private float smoothFactor = 7.0f;
 
     // Head bob 
 
@@ -41,7 +44,7 @@ public class PlayerBody : MonoBehaviour
     private Animator animator;
     private CharacterController cc;
 
-    [SerializeField] private PlayerInputHandler playerInputHandler;
+    [SerializeField] private LittleBoyPlayerInputHandler playerInputHandler;
     [SerializeField] private Transform cameraHolder;
 
     // Current Movement
@@ -57,9 +60,18 @@ public class PlayerBody : MonoBehaviour
 
     // Camera
     public Camera playerCamera;
+    public Camera bucketCamera;
+
+    // Player lock
+    private bool playerLock;
 
     // Reticle
     public GameObject reticle; // TODO: FIND RETICLE!!!
+    private Image reticleImg;
+
+    private float defaultSensitivity;
+    private float defaultSpeed;
+
 
     void Awake()
     {
@@ -72,6 +84,15 @@ public class PlayerBody : MonoBehaviour
         // Bob Start Position
         startPosBob = playerCamera.transform.localPosition;
         startBucketPosBob = bucketTransform.localPosition;
+
+        playerLock = false;
+
+        reticleImg = reticle.GetComponent<Image>();
+        reticleImg.color = new Color(0f, 0f, 0f, 0.7f);
+
+        defaultSensitivity = mouseSensitivity;
+        defaultSpeed = moveSpeed;
+
     }
 
     // Start is called before the first frame update
@@ -85,15 +106,16 @@ public class PlayerBody : MonoBehaviour
     void Update()
     {
         HandleMovement();
+        HandleRotation();
+        // HandleMovement and HandleRotation
+        // Handle input and logic update            
+
         if (enableBob)
         {
             CheckMotion();
             // playerCamera.transform.LookAt(FocusTarget()); // for stabilizing and focusing on objects
         }
-        HandleRotation();
         HandleInteract();
-        // HandleMovement and HandleRotation
-        // Handle input and logic update
     }
 
     private Vector3 CalculateWorldDirection()
@@ -168,6 +190,44 @@ public class PlayerBody : MonoBehaviour
         return animator;
     }
 
+    private void HandleInteract()
+    {
+        //shoot ray for reticle
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        // Reset Reticle
+        if (!Physics.Raycast(ray, out RaycastHit hit, 1.0f))
+        {
+            ResetReticle();
+            return;
+        }
+
+        // Check if hit object is interactable
+        if (!hit.collider.CompareTag("Interactable"))
+        {
+            ResetReticle();
+            return;
+        }
+
+        // Object-specific logic
+        if (hit.collider.name == "ContainerTub")
+        {
+            reticleImg.color = new Color(1f, 0f, 0f, 1f); // red
+            playerStateManager.SetRayHit(true);
+        }
+        else
+        {
+            ResetReticle();
+        }
+
+    }
+
+    private void ResetReticle()
+    {
+        reticleImg.color = new Color(0f, 0f, 0f, 0.7f); // default
+        playerStateManager.SetRayHit(false);
+    }
+
     // idk if we ever handle jumping, ask Yas
     private void HandleJumping()
     {
@@ -185,54 +245,13 @@ public class PlayerBody : MonoBehaviour
         }
     }
 
-    // LOCK THIS TO CERTAIN STATES!!!!! 
-    private void HandleInteract()
-    {
-        // Reticle
-        reticle.GetComponent<Image>().color = Color.red;
-
-        //shoot ray for reticle
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-
-        //Shoots ray at 5 meters
-        if (Physics.Raycast(ray, out hit, 5))
-        {
-            //if object has interactable tag
-            if (hit.collider.CompareTag("Interactable"))
-            {
-                //turn reticle black
-                reticle.GetComponent<Image>().color = Color.black;
-
-                if (hit.collider.name == "ContainerTub")
-                {
-                    if (playerInputHandler.InteractTriggered == true)
-                    {
-                        bucketAnimator.SetBool("Drain", true);
-                        Debug.Log("ContainerTub Hit");
-                    }
-                }
-                // add a bool to handleInteract begin water pump
-                // setWaterPumpingInteract = true
-            }
-        }
-
-        // TODO: LOOK INTO CYCLE PARAMETER, NOT FOR RIGHT NOW
-        // if setWaterPumpingInteract == true && filledWater == false
-
-        // have a float that over fillAmount = time.deltatime * waterfillfrequency fills up from 0 -> 100
-        // during water fill have animation for bucket fill progressively. Fill amount animation = fillAmount (speed of animation is tied to fillAmount)
-        // When water at max, stop water fill animation and set filledWater (new bool for player) to true    
-    }
-
     // Movement Handling - CHECK BOOL OF STATE AND LOCK IT IF NECESSARY
     private void HandleMovement()
     {
         Vector3 worldDirection = CalculateWorldDirection();
 
         //Desired movement velocity
-        Vector3 targetVelocity = worldDirection * currentSpeed;
+        Vector3 targetVelocity = worldDirection * (playerLock ? 0.01f : currentSpeed);
 
         // Smooth acceleration and deceleration
         float smoothTime = (targetVelocity.magnitude > 0.1f) ? accelerationTime : decelerationTime;
@@ -253,7 +272,7 @@ public class PlayerBody : MonoBehaviour
     private void HandleRotation()
     {
         // Debug.Log(playerInputHandler.RotationInput);
-        Vector2 targetRotation = playerInputHandler.RotationInput * mouseSensitivity; // no mult by Time.deltaTime since we are already using delta movements for mouse
+        Vector2 targetRotation = playerInputHandler.RotationInput * (playerLock ? 0.01f : mouseSensitivity); // no mult by Time.deltaTime since we are already using delta movements for mouse
         currentRotation = Vector2.SmoothDamp(currentRotation, targetRotation, ref smoothVelocity, smoothTime);
 
         /*
@@ -266,6 +285,31 @@ public class PlayerBody : MonoBehaviour
         // We only want to rotate the camera, not the whole player
         verticalRotation = Mathf.Clamp(verticalRotation - currentRotation.y, -upDownLookRange, upDownLookRange);
         cameraHolder.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+    }
+
+    public LittleBoyPlayerInputHandler GetPlayerInputHandler()
+    {
+        return playerInputHandler;
+    }
+
+    public CharacterController GetPlayerCharacterController()
+    {
+        return cc;
+    }
+
+    public void Lock(bool lockSet)
+    {
+        playerLock = lockSet;
+    }
+
+    public List<Camera> Cameras()
+    {
+        List<Camera> cameraList = new List<Camera>
+        {
+            playerCamera,
+            bucketCamera
+        };
+        return cameraList;
     }
 
 }

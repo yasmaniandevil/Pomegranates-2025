@@ -54,8 +54,8 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
 
+        loaderCanvas.SetActive(false);
         scene.allowSceneActivation = true;
-        // loaderCanvas.SetActive(false);
     }
 
     void Update()

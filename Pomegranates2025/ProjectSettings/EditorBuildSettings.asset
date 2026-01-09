@@ -11,4 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Prototype Scenes/LITTLEBOY_01.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 07cc12e0b3b9f2a4abf5ec56d96d5f18,
+      type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 135bc429660457d4f8da1181ccb63bf5,
+      type: 3}
