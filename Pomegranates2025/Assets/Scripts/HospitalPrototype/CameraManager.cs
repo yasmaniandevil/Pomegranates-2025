@@ -66,8 +66,11 @@ public class CameraManager : MonoBehaviour
         }
 
 
-        // Activation
-        cameraActivations[camIndex].ActivateAllGameObjects();
+        // Activation -- should only be happening once
+        if (!cameraActivations[camIndex].singleActivation)
+        {
+            cameraActivations[camIndex].ActivateAllGameObjects();
+        }
     }
 
     // Input for Camera Index
@@ -96,7 +99,7 @@ public class CameraManager : MonoBehaviour
             // Need to deactivate previous camInd game objects
             // This will never hit index 0
             cameraActivations[camIndex - 1].DeActivateAllGameObjects();
-            AudioManager.instance.PlayGlobalSFX("CamClick");
+            AudioManager.instance.PlayGlobalSFXOneShot("CamClick");
 
         }
 
@@ -130,7 +133,7 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            AudioManager.instance.PlayGlobalSFX("CamClick");
+            AudioManager.instance.PlayGlobalSFXOneShot("CamClick");
 
         }
     }

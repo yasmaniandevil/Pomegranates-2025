@@ -18,11 +18,22 @@ public class LevelManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Subscribe to sceneLoaded event
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
             return;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 
@@ -54,12 +65,41 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
 
+        loaderCanvas.SetActive(false);
+        // DisableAllVolumes();
         scene.allowSceneActivation = true;
-        // loaderCanvas.SetActive(false);
     }
 
     void Update()
     {
         progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, target, 3 * Time.deltaTime);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //  ResetLightingForScene();
+    }
+
+    void ResetLightingForScene()
+    {
+        Debug.Log("Scene Loaded Reset Lighting");
+        // Update realtime GI environment so lighting refreshes correctly
+        DynamicGI.UpdateEnvironment();
+
+        // Reset ambient lighting to neutral gray to avoid leftover tints
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+        RenderSettings.ambientLight = Color.gray;
+
+        // Reset reflection intensity to default
+        RenderSettings.reflectionIntensity = 1f;
+    }
+
+    void DisableAllVolumes()
+    {
+        var volumes = FindObjectsOfType<UnityEngine.Rendering.Volume>();
+        foreach (var v in volumes)
+        {
+            v.enabled = false;
+        }
     }
 }
