@@ -43,7 +43,6 @@ public class LittleBoyPlayerDreadState : LittleBoyPlayerBaseState
 
     public override void EnterState(LittleBoyPlayerStateManager player)
     {
-        Debug.Log("Dread");
         playerBody = player.GetPlayerBody();
         playerBody.Lock(false);
         dreadObject = player.GetDreadObject();
@@ -89,7 +88,6 @@ public class LittleBoyPlayerDreadState : LittleBoyPlayerBaseState
     {
         // as distance shrinks, effects grow
         // TODO: REVIEW LERP AND INVERSELERP -- I DON'T UNDERSTAND THIS ENOUGH
-        Debug.Log(distance);
         float t = Mathf.InverseLerp(40f, 20f, distance);
         float tspeed = Mathf.InverseLerp(45f, 20f, distance);
 

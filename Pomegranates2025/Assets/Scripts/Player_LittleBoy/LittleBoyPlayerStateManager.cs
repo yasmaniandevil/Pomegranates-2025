@@ -20,6 +20,9 @@ public class LittleBoyPlayerStateManager : MonoBehaviour
     [SerializeField] private GameObject dreadObject;
     [SerializeField] private Volume ppv;
 
+    [Header("Cutscene Manager")]
+    public CutsceneManager cutsceneManager;
+
     // Change this to bucket and no bucket
     LittleBoyPlayerBaseState currentState;
     public LittleBoyPlayerAdrenalineState adrenalineState = new LittleBoyPlayerAdrenalineState();
@@ -82,10 +85,15 @@ public class LittleBoyPlayerStateManager : MonoBehaviour
     // Dread State
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("here");
         if (other.gameObject.CompareTag("PlayerStateTrigger"))
         {
             SwitchState(dreadState);
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("CutsceneAdvanceTrigger"))
+        {
+            cutsceneManager.PlayNext();
             Destroy(other.gameObject);
         }
     }

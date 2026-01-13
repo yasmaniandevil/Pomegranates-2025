@@ -15,7 +15,6 @@ public class StartSetupTrigger : MonoBehaviour
     // set level increment triggger to true
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TRIGGER");
         exitDoor.SetActive(true);
         entryDoor.SetActive(true);
         gameObject.SetActive(false);

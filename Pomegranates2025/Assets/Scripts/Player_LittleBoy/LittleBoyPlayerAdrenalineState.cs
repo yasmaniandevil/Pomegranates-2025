@@ -31,7 +31,6 @@ public class LittleBoyPlayerAdrenalineState : LittleBoyPlayerBaseState
         playerBody = player.GetPlayerBody();
         actionStart = false;
         actionComplete = false;
-        Debug.Log("Adrenaline");
         playerBody.Lock(false);
 
         List<Camera> cameraList = playerBody.Cameras();
@@ -148,7 +147,6 @@ public class LittleBoyPlayerAdrenalineState : LittleBoyPlayerBaseState
 
                 if (playerBody.GetPlayerInputHandler().InteractCompleted)
                 {
-                    Debug.Log("Hold completed (4s)");
                     //StartInteraction();
                 }
 
@@ -156,7 +154,6 @@ public class LittleBoyPlayerAdrenalineState : LittleBoyPlayerBaseState
                 {
                     if (playerBody.GetPlayerInputHandler().WasInterruptedBeforeCompletion())
                     {
-                        Debug.Log("Interact cancelled early");
                         player.GetBucketAnimator().SetBool("Drain", false);
 
                         // CancelInteraction();
@@ -168,7 +165,6 @@ public class LittleBoyPlayerAdrenalineState : LittleBoyPlayerBaseState
                         player.SetBucketState(true);
                         player.GetBucketWater().SetActive(false);
 
-                        Debug.Log("Released after completion");
                     }
 
                     playerBody.GetPlayerInputHandler().ResetInteractFlags();
